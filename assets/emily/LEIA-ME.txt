@@ -1,0 +1,23 @@
+FOTOS DA EMILY — pasta de upload (COMPARTILHADA)
+================================================
+
+Esta pasta fica na RAIZ do site (www.reconexaosagrada.com/assets/emily/)
+e é compartilhada por TODAS as páginas/variantes (b2a, c2a, c2b, df e
+futuras). Trocar uma foto aqui atualiza em todas as páginas que a usam.
+
+A página /df usa DUAS fotos da Emily. Para trocar, basta substituir os
+arquivos abaixo mantendo EXATAMENTE o mesmo nome (ou me avise se quiser
+nomes diferentes que eu atualizo o HTML):
+
+1) emily-hero.jpg
+   - Onde aparece: HERO (topo da página), em recorte CIRCULAR pequeno (64px).
+   - Recomendado: foto de rosto/busto, bem enquadrada e centralizada.
+   - Proporção ideal: 1:1 (quadrada). Ex.: 400x400px ou maior.
+
+2) emily-sobre.jpg
+   - Onde aparece: seção AUTORIDADE / HISTÓRIA DE ORIGEM (foto grande ao lado do texto).
+   - Recomendado: retrato vertical (consultório / gravação / ambiente).
+   - Proporção ideal: 3:4 (vertical). Ex.: 900x1200px ou maior.
+
+Formato: .jpg (preferível) ou .png/.webp.
+Se enviar com outro nome/extensão, me avise para eu apontar o HTML.

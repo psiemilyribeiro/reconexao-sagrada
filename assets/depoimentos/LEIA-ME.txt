@@ -1,0 +1,15 @@
+DEPOIMENTOS — avatares dos prints de WhatsApp
+=============================================
+
+Avatares (foto de perfil) exibidos nos balões de depoimento da seção PROVA.
+Recorte CIRCULAR pequeno (~40px). Use foto de rosto, centralizada.
+Proporção ideal: 1:1 (quadrada).
+
+Arquivos usados pela página (mantenha os nomes):
+- fernanda.jpg   -> Fernanda M., 38 anos
+- camila.jpg     -> Camila R., 34 anos
+- patricia.jpg   -> Patrícia S., 41 anos
+
+OBS.: estes avatares foram herdados das outras variantes da página.
+Para trocar o TEXTO de cada depoimento, edite direto a seção PROVA no index.html.
+Se adicionar/remover depoimentos, me avise para ajustar o HTML.

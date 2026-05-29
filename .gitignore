@@ -3,3 +3,6 @@ Thumbs.db
 *.log
 .env
 .env.local
+
+# Originais de fotos (alta resolução) — manter apenas local, não publicar
+assets/emily/IMG_*.jpg
