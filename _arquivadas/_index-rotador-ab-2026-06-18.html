@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reconexão Sagrada</title>
+
+  <!-- Evita flash de conteúdo: esconde a página enquanto redireciona -->
+  <style>
+    html { visibility: hidden; }
+  </style>
+</head>
+<body>
+
+<script>
+(function () {
+
+  // ── 1. VARIANTES disponíveis (~25% cada) ────────────────────────────────
+  var VARIANTS = ['b2a','c2a','c2b','df'];
+  var COOKIE_NAME = 'rs_variant';
+  var COOKIE_DAYS = 30;
+
+  // ── 2. HELPERS ───────────────────────────────────────────────────────────
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  function setCookie(name, value, days) {
+    var expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value)
+      + '; expires=' + expires
+      + '; path=/; SameSite=Lax';
+  }
+
+  function pickVariant() {
+    return VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
+  }
+
+  // ── 3. CAPTURA todos os parâmetros da URL atual ──────────────────────────
+  // (UTMs, click IDs de plataformas de anúncio, qualquer parâmetro custom)
+  function getCurrentParams() {
+    return new URLSearchParams(window.location.search);
+  }
+
+  // ── 4. LÓGICA PRINCIPAL ──────────────────────────────────────────────────
+  var params   = getCurrentParams();
+  var variant  = getCookie(COOKIE_NAME);
+
+  // Se não há cookie ou a variante salva não é válida, sorteia uma nova
+  if (!variant || VARIANTS.indexOf(variant) === -1) {
+    variant = pickVariant();
+    setCookie(COOKIE_NAME, variant, COOKIE_DAYS);
+  }
+
+  // Adiciona o parâmetro de variante aos UTMs existentes
+  params.set('variante', variant);
+
+  // Monta a URL de destino
+  var query    = params.toString();
+  var destPath = '/' + variant + '/';
+  var destURL  = destPath + (query ? '?' + query : '');
+
+  // Redireciona (replace para não poluir o histórico)
+  window.location.replace(destURL);
+
+})();
+</script>
+
+</body>
+</html>

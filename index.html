@@ -1,69 +1,1303 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reconexão Sagrada</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Reconexão Sagrada — Teste: descubra onde a conexão se rompeu</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Ctext%20y='26'%20font-size='26'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Faça o teste de 2 minutos e descubra exatamente onde a conexão se rompeu — e como reconstruir a paixão em 21 dias. Por Emily Ribeiro, psicóloga.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f5ede3">
 
-  <!-- Evita flash de conteúdo: esconde a página enquanto redireciona -->
-  <style>
-    html { visibility: hidden; }
-  </style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PCJRX864');</script>
+<!-- End Google Tag Manager -->
+
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//pay.hotmart.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* ── Paleta do Quiz (creme quente · rosa · vinho · dourado) ── */
+    --bg:        #f6eee4;     /* creme quente de fundo */
+    --bg-soft:   #fbf6ef;
+    --card:      #ffffff;
+    --ink:       #2c2723;     /* texto principal */
+    --ink-soft:  #5d544c;
+    --muted:     #938880;
+    --line:      rgba(44,39,35,.10);
+    --primary:   #c75f6b;     /* rosa primário (CTA / seleção) */
+    --primary-deep: #a23f53;
+    --primary-soft: #fae6e8;  /* tint de seleção */
+    --wine:      #7c2e46;     /* vinho — nome do perfil */
+    --gold:      #c39a4e;     /* dourado — acentos premium */
+    --gold-soft: #f5ead0;
+    --ok:        #4f9a6a;
+    --warn:      #d39a3e;
+    --bad:       #cf5b54;
+    --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --serif: 'Fraunces', Georgia, serif;
+    --ease: cubic-bezier(.16,1,.3,1);
+    --bounce: cubic-bezier(.34,1.56,.64,1);
+    --shadow: 0 14px 40px rgba(124,46,70,.10);
+    --shadow-sm: 0 4px 16px rgba(44,39,35,.06);
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background:
+      radial-gradient(1100px 600px at 50% -10%, #fcf2e6 0%, transparent 60%),
+      radial-gradient(800px 500px at 100% 110%, #f7e7e4 0%, transparent 55%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 400;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100dvh;
+  }
+
+  h1, h2, h3 { line-height: 1.2; letter-spacing: -.02em; font-weight: 700; }
+  em { font-style: italic; }
+  strong, b { font-weight: 700; }
+  .em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--primary); letter-spacing: 0; }
+  .em-wine { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--wine); letter-spacing: 0; }
+
+  .wordmark {
+    font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: 1.02rem; letter-spacing: .04em; color: var(--primary);
+    text-transform: uppercase;
+  }
+  .wordmark .x { color: var(--gold); font-style: normal; }
+
+  /* ════════ TOPO FIXO ════════ */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(246,238,228,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 13px 18px;
+  }
+  .topbar-inner { max-width: 540px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+  .back {
+    border: none; background: rgba(124,46,70,.06); color: var(--ink-soft); cursor: pointer;
+    width: 34px; height: 34px; flex: 0 0 34px; border-radius: 50%; font-size: 20px; line-height: 1;
+    display: grid; place-items: center; transition: background .2s, transform .15s, color .2s;
+  }
+  .back:hover { background: var(--primary-soft); color: var(--primary); }
+  .back:active { transform: scale(.92); }
+  .back[hidden] { visibility: hidden; }
+  .prog { flex: 1; height: 9px; background: rgba(124,46,70,.10); border-radius: 100px; overflow: hidden; }
+  .prog-fill { height: 100%; width: 0; border-radius: 100px;
+    background: linear-gradient(90deg, var(--gold), var(--primary)); transition: width .5s var(--ease); }
+  .prog-pct { font-size: 12px; font-weight: 700; color: var(--primary); min-width: 34px; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* ════════ PALCO ════════ */
+  .stage { min-height: 100dvh; display: flex; flex-direction: column; justify-content: center;
+    padding: 86px 20px 36px; max-width: 540px; margin: 0 auto; width: 100%; }
+  .screen { will-change: transform, opacity; }
+  .in-fwd  { animation: inFwd .42s var(--ease) both; }
+  .in-back { animation: inBack .42s var(--ease) both; }
+  @keyframes inFwd  { from { opacity: 0; transform: translateX(34px); } to { opacity: 1; transform: none; } }
+  @keyframes inBack { from { opacity: 0; transform: translateX(-34px); } to { opacity: 1; transform: none; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes popIn  { 0% { opacity: 0; transform: scale(.4); } 60% { transform: scale(1.12); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @keyframes spin   { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .in-fwd, .in-back, .opt-anim, .pop { animation: none !important; }
+    .prog-fill, .bar-fill, .ring-fg { transition: none !important; }
+  }
+
+  /* ════════ CABEÇALHO DE PERGUNTA ════════ */
+  .kicker { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--primary);
+    background: var(--primary-soft); padding: 6px 13px; border-radius: 100px; margin-bottom: 18px; }
+  .q-title { font-size: clamp(1.5rem, 5.6vw, 2.05rem); margin-bottom: 12px; letter-spacing: -.025em; }
+  .q-sub { font-size: 1rem; color: var(--muted); margin-bottom: 24px; font-weight: 500; }
+  .q-note { font-size: 13px; color: var(--muted); margin-top: 20px; text-align: center; }
+  .q-note a { color: var(--muted); }
+
+  /* ════════ OPÇÕES ════════ */
+  .opts { display: flex; flex-direction: column; gap: 10px; }
+  .opt-anim { animation: fadeUp .4s var(--ease) both; }
+  .opt {
+    display: flex; align-items: center; gap: 13px; width: 100%; text-align: left;
+    background: var(--card); border: 2px solid transparent; box-shadow: var(--shadow-sm);
+    border-radius: 17px; padding: 15px 16px; font-family: var(--sans); font-size: 16px; font-weight: 600;
+    color: var(--ink); cursor: pointer; line-height: 1.35; position: relative; overflow: hidden;
+    transition: border-color .18s, background .18s, transform .12s var(--bounce), box-shadow .2s;
+  }
+  .opt:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(124,46,70,.12); }
+  .opt:active { transform: scale(.985); }
+  .opt-emoji { font-size: 22px; line-height: 1; width: 40px; height: 40px; flex: 0 0 40px; border-radius: 12px;
+    background: var(--bg-soft); display: grid; place-items: center; transition: background .18s, transform .2s; }
+  .opt-tx { flex: 1; }
+  .opt-check { width: 24px; height: 24px; flex: 0 0 24px; border-radius: 50%; border: 2px solid var(--line);
+    display: grid; place-items: center; color: #fff; font-size: 13px; transition: background .15s, border-color .15s, transform .2s; }
+  .opt.multi .opt-check { border-radius: 8px; }
+  .opt.sel { border-color: var(--primary); background: var(--primary-soft); }
+  .opt.sel .opt-emoji { background: #fff; transform: scale(1.06); }
+  .opt.sel .opt-check { background: var(--primary); border-color: var(--primary); animation: popIn .3s var(--bounce) both; }
+
+  /* ════════ ESCALA 1–5 ════════ */
+  .scale { display: flex; gap: 8px; justify-content: space-between; margin: 10px 0 14px; }
+  .sdot { flex: 1; aspect-ratio: 1; max-width: 70px; border-radius: 18px; border: 2px solid var(--line);
+    background: var(--card); box-shadow: var(--shadow-sm); cursor: pointer; font-family: var(--sans);
+    font-size: 1.25rem; font-weight: 700; color: var(--muted);
+    display: grid; place-items: center; transition: all .18s var(--bounce); }
+  .sdot:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
+  .sdot.sel { background: linear-gradient(160deg, var(--primary), var(--primary-deep)); border-color: transparent; color: #fff; transform: translateY(-3px) scale(1.04); box-shadow: 0 12px 26px rgba(167,63,83,.32); }
+  .scale-ends { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .scale-ends span { max-width: 45%; }
+  .scale-ends span:last-child { text-align: right; }
+
+  /* ════════ BOTÃO ════════ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 11px; width: 100%;
+    background: linear-gradient(150deg, var(--primary), var(--primary-deep)); color: #fff;
+    font-family: var(--sans); font-size: 16px; font-weight: 700; letter-spacing: .01em;
+    text-decoration: none; padding: 18px 26px; border: none; border-radius: 16px; cursor: pointer;
+    box-shadow: 0 14px 32px rgba(167,63,83,.30); transition: transform .2s var(--bounce), box-shadow .2s, opacity .2s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(167,63,83,.40); }
+  .btn:active { transform: scale(.98); }
+  .btn[disabled] { opacity: .38; pointer-events: none; box-shadow: none; }
+  .btn .arr { transition: transform .2s; }
+  .btn:hover .arr { transform: translateX(4px); }
+  .btn-wrap { margin-top: 24px; }
+  .btn-note { font-size: 12.5px; color: var(--muted); text-align: center; margin-top: 13px; font-weight: 500; }
+
+  /* ════════ LANDING ════════ */
+  .landing { text-align: center; }
+  .landing .wordmark { display: inline-block; margin-bottom: 22px; }
+  .landing h1 { font-size: clamp(1.9rem, 7.6vw, 2.7rem); margin-bottom: 16px; letter-spacing: -.03em; }
+  .landing .lead { font-size: 1.08rem; color: var(--ink-soft); max-width: 30ch; margin: 0 auto 26px; font-weight: 500; }
+  .landing .lead b { color: var(--primary-deep); }
+  .entry-q { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+  .landing .opts { text-align: left; }
+  .trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 26px; }
+  .trust .pill { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); background: rgba(255,255,255,.7);
+    border: 1px solid var(--line); border-radius: 100px; padding: 7px 14px; display: inline-flex; align-items: center; gap: 6px; }
+  .stars { color: var(--gold); letter-spacing: 1px; }
+  .legal { font-size: 11.5px; color: var(--muted); margin-top: 18px; line-height: 1.6; }
+  .legal a { color: var(--muted); }
+
+  /* ════════ INTERSTITIAL ════════ */
+  .inter { text-align: center; }
+  .inter .icon-pop { font-size: 56px; display: inline-block; margin-bottom: 8px; animation: popIn .5s var(--bounce) both, floaty 3.5s ease-in-out 1s infinite; }
+  .inter .big-num { font-family: var(--serif); font-style: italic; font-weight: 600; color: var(--primary);
+    font-size: clamp(2.8rem, 14vw, 4.4rem); line-height: 1; margin-bottom: 4px; animation: popIn .55s var(--bounce) both; }
+  .inter h2 { font-size: clamp(1.55rem, 5.4vw, 2.1rem); margin-bottom: 16px; letter-spacing: -.025em; }
+  .inter .quote { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(1.4rem, 5.2vw, 1.95rem);
+    line-height: 1.32; color: var(--wine); margin-bottom: 18px; letter-spacing: -.01em; }
+  .inter p { font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 14px; font-weight: 500; }
+  .inter .subline { color: var(--muted); margin-top: -6px; font-weight: 600; }
+  .inter .stat { display: inline-block; background: var(--gold-soft); color: #7a5e1d; border-radius: 14px;
+    padding: 13px 20px; font-size: 15px; font-weight: 600; margin: 8px 0; line-height: 1.45; }
+  .inter .signed { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--primary); margin-top: 12px; font-weight: 500; }
+  .inter.on-dark { color: #fbeee9; }
+  .stage.dark { background: linear-gradient(170deg, #3a2128, #2a1820); }
+  .stage.dark .inter p { color: rgba(251,238,233,.8); }
+  .stage.dark .inter .quote { color: #f4cfd0; }
+  .stage.dark .kicker { background: rgba(199,95,107,.2); color: #f0b9bf; }
+
+  /* ════════ BARRAS DE PERFIL ════════ */
+  .bars { margin: 22px 0 6px; text-align: left; }
+  .bar-row { margin-bottom: 15px; }
+  .bar-row .bl { display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+  .bar-row .bl .lvl { font-weight: 700; }
+  .bar-track { height: 10px; background: rgba(44,39,35,.08); border-radius: 100px; overflow: hidden; }
+  .stage.dark .bar-track { background: rgba(255,255,255,.12); }
+  .bar-fill { height: 100%; width: 0; border-radius: 100px; transition: width 1s var(--ease); }
+  .lvl-baixa { color: var(--bad); } .bar-baixa { background: linear-gradient(90deg, #e0857f, var(--bad)); }
+  .lvl-media { color: var(--warn); } .bar-media { background: linear-gradient(90deg, #e6bd76, var(--warn)); }
+  .lvl-alta  { color: var(--ok);   } .bar-alta  { background: linear-gradient(90deg, #7fc298, var(--ok)); }
+
+  .profile-card { background: linear-gradient(160deg, #fff, var(--primary-soft));
+    border: 2px solid rgba(199,95,107,.3); border-radius: 20px; padding: 22px 20px; margin: 20px 0 4px;
+    text-align: left; box-shadow: var(--shadow); animation: popIn .5s var(--bounce) both; }
+  .profile-card .pname { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.55rem;
+    color: var(--wine); margin-bottom: 9px; line-height: 1.15; }
+  .profile-card p { font-size: 15.5px; margin: 0; color: var(--ink-soft); font-weight: 500; }
+  .stage.dark .profile-card { background: linear-gradient(160deg, #45272f, #38202a); border-color: rgba(244,207,208,.25); }
+  .stage.dark .profile-card .pname { color: #f4cfd0; }
+  .stage.dark .profile-card p { color: rgba(251,238,233,.82); }
+
+  /* ════════ REVEAL ════════ */
+  .reveal { text-align: center; }
+  .badge { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 800; letter-spacing: .08em;
+    text-transform: uppercase; padding: 8px 16px; border-radius: 100px; margin-bottom: 16px; animation: popIn .5s var(--bounce) both; }
+  .badge.alto { background: rgba(207,91,84,.14); color: var(--bad); }
+  .badge.atencao { background: rgba(211,154,62,.16); color: #a9761f; }
+  .reveal h2 { font-size: clamp(1.6rem, 5.6vw, 2.2rem); margin-bottom: 16px; }
+  .metrics-line { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 16px 0 20px; }
+  .metrics-line .m { font-size: 12.5px; font-weight: 600; background: #fff; border: 1px solid var(--line);
+    border-radius: 100px; padding: 8px 14px; box-shadow: var(--shadow-sm); }
+  .metrics-line .m b { font-weight: 800; }
+  .diag-text { text-align: left; background: #fff; border-radius: 18px; padding: 22px; box-shadow: var(--shadow-sm);
+    font-size: 16px; color: var(--ink-soft); font-weight: 500; }
+  .section-label { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.5rem; color: var(--wine); margin: 32px 0 8px; }
+  .timeline { text-align: left; margin: 8px 0; display: flex; flex-direction: column; gap: 12px; }
+  .tl-step { display: flex; gap: 14px; background: #fff; border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--gold); animation: fadeUp .5s var(--ease) both; }
+  .tl-step .tl-n { font-family: var(--serif); font-style: italic; font-weight: 600; color: var(--primary);
+    font-size: 1rem; flex: 0 0 76px; line-height: 1.3; }
+  .tl-step h3 { font-size: 1.08rem; margin-bottom: 3px; }
+  .tl-step p { font-size: 14px; color: var(--muted); margin: 0; font-weight: 500; }
+  .reveal-graph { display: flex; align-items: flex-end; justify-content: center; gap: 14px; height: 130px; margin: 26px 0 8px; }
+  .reveal-graph .col { flex: 1; max-width: 90px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px; height: 100%; }
+  .reveal-graph .bar2 { width: 100%; border-radius: 12px 12px 0 0; height: 0; transition: height 1s var(--ease); }
+  .reveal-graph .lbl { font-size: 12px; color: var(--muted); font-weight: 700; }
+  .meta-date { text-align: center; font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.2rem; color: var(--wine); margin: 14px 0 4px; }
+  .meta-date .dt { background: var(--gold-soft); padding: 2px 10px; border-radius: 8px; color: #7a5e1d; }
+
+  /* ════════ EMILY ════════ */
+  .emily { text-align: center; }
+  .emily .photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; object-position: 50% 16%;
+    margin: 0 auto 12px; display: block; border: 4px solid #fff; box-shadow: var(--shadow); animation: popIn .5s var(--bounce) both; }
+  .emily .photo-cap { font-family: var(--serif); font-style: italic; color: var(--primary); font-size: 1.05rem; margin-bottom: 20px; }
+  .emily .letter { text-align: left; font-size: 1.05rem; background: #fff; border-radius: 20px; padding: 26px 24px; box-shadow: var(--shadow); }
+  .emily .letter p { margin-bottom: 15px; color: var(--ink-soft); font-weight: 500; }
+  .emily .letter p:last-of-type { margin-bottom: 0; }
+  .emily .punch { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.3rem; color: var(--wine); line-height: 1.35; }
+  .emily .sig { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.4rem; color: var(--primary); margin-top: 16px; }
+
+  /* ════════ LOADING ════════ */
+  .load-rows { text-align: left; max-width: 400px; margin: 4px auto 22px; display: flex; flex-direction: column; gap: 0; }
+  .load-row { display: flex; align-items: center; gap: 13px; padding: 14px 0; font-size: 15.5px; font-weight: 600;
+    color: var(--muted); border-bottom: 1px solid var(--line); transition: color .3s; }
+  .load-row .dot { width: 26px; height: 26px; flex: 0 0 26px; border-radius: 50%; border: 2.5px solid var(--line);
+    display: grid; place-items: center; font-size: 14px; color: #fff; transition: all .3s; }
+  .load-row.done { color: var(--ink); }
+  .load-row.done .dot { background: var(--ok); border-color: var(--ok); animation: popIn .35s var(--bounce) both; }
+  .load-row.active .dot { border-color: var(--primary); border-top-color: transparent; animation: spin .8s linear infinite; }
+
+  .micro-modal { position: fixed; inset: 0; z-index: 60; background: rgba(44,30,34,.55); backdrop-filter: blur(4px);
+    display: grid; place-items: center; padding: 22px; animation: fadeUp .3s var(--ease) both; }
+  .micro-card { background: var(--bg-soft); border-radius: 22px; padding: 30px 24px; max-width: 380px; width: 100%;
+    text-align: center; box-shadow: 0 30px 70px rgba(0,0,0,.3); animation: popIn .4s var(--bounce) both; }
+  .micro-card h3 { font-size: 1.35rem; margin-bottom: 20px; }
+  .micro-opts { display: flex; gap: 12px; }
+  .micro-opts button { flex: 1; padding: 16px; border-radius: 14px; border: 2px solid var(--line); background: #fff;
+    font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--ink); cursor: pointer; transition: all .15s var(--bounce); }
+  .micro-opts button:hover { border-color: var(--primary); background: var(--primary-soft); transform: translateY(-2px); }
+  .micro-opts button:active { transform: scale(.96); }
+
+  .testi { background: #fff; border-radius: 18px; padding: 18px 20px; text-align: left; margin-top: 6px; box-shadow: var(--shadow); animation: fadeUp .4s var(--ease) both; }
+  .testi .th { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+  .testi .th img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: 0 0 44px; }
+  .testi .th .who b { display: block; font-size: 14.5px; font-weight: 700; }
+  .testi .th .stars { font-size: 12px; }
+  .testi .verif { color: var(--ok); font-size: 12px; font-weight: 700; margin-left: auto; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 3px; }
+  .testi p { font-size: 14.5px; color: #463f39; margin: 0; line-height: 1.5; font-weight: 500; }
+
+  /* ════════ OFERTA ════════ */
+  .offer { text-align: center; }
+  .offer h2 { font-size: clamp(1.7rem, 6vw, 2.3rem); margin-bottom: 12px; }
+  .offer .o-sub { color: var(--ink-soft); margin-bottom: 24px; font-weight: 500; }
+  .offer .o-sub b { color: var(--primary-deep); }
+  .stack { display: flex; flex-direction: column; gap: 11px; text-align: left; margin-bottom: 24px; }
+  .stack .item { background: #fff; border: 2px solid transparent; border-radius: 18px; padding: 18px 20px; box-shadow: var(--shadow-sm); animation: fadeUp .45s var(--ease) both; }
+  .stack .item.main { border-color: var(--gold); box-shadow: 0 16px 40px rgba(195,154,78,.18); }
+  .stack .item .tag { font-size: 11.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 7px; }
+  .stack .item.main .tag { color: var(--gold); }
+  .stack .item h3 { font-size: 1.18rem; margin-bottom: 5px; }
+  .stack .item p { font-size: 14px; color: var(--muted); margin-bottom: 9px; font-weight: 500; }
+  .stack .item .val { font-size: 13.5px; font-weight: 700; }
+  .stack .item .val s { color: #bcb2aa; font-weight: 500; }
+  .stack .item .free { display: inline-block; background: var(--gold-soft); color: #7a5e1d; font-weight: 800;
+    font-size: 11.5px; padding: 3px 11px; border-radius: 100px; margin-left: 6px; }
+  .anchor { background: #fff; border-radius: 22px; padding: 24px; box-shadow: var(--shadow); margin-bottom: 4px; }
+  .anchor .total { font-size: 15px; color: var(--muted); font-weight: 600; }
+  .anchor .total s { opacity: .8; }
+  .anchor .now-lbl { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 10px 0 0; font-weight: 700; }
+  .anchor .price { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: clamp(3.4rem, 17vw, 5rem); line-height: 1; color: var(--primary); }
+  .anchor .price small { font-size: .32em; vertical-align: super; font-style: normal; }
+  .anchor .install { font-size: 13.5px; color: var(--muted); margin-top: 2px; font-weight: 500; }
+  .seal { width: 116px; height: 116px; border-radius: 50%; margin: 26px auto 16px; border: 2px dashed var(--gold);
+    display: grid; place-items: center; text-align: center; color: var(--gold); line-height: 1.1; background: var(--gold-soft); }
+  .seal b { font-family: var(--serif); font-style: italic; font-size: 2.2rem; font-weight: 600; display: block; color: #a9761f; }
+  .seal span { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 800; color: #a9761f; }
+  .guarantee { font-size: 14.5px; color: var(--ink-soft); max-width: 32ch; margin: 0 auto; font-weight: 500; }
+  .guarantee b { color: var(--ink); }
+  footer { text-align: center; padding: 30px 20px 40px; font-size: 12px; color: var(--muted); line-height: 1.9; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer .wordmark { display: block; margin-bottom: 6px; }
+
+  @media (max-width: 380px) {
+    .sdot { font-size: 1.05rem; border-radius: 14px; }
+    .opt-emoji { width: 36px; height: 36px; flex-basis: 36px; font-size: 20px; }
+    .tl-step .tl-n { flex-basis: 66px; }
+  }
+</style>
 </head>
 <body>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCJRX864"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ╔═══════════════════════════════════════════════════════════════╗
+     ║  TODO / PLACEHOLDERS — substituir por dados REAIS e            ║
+     ║  comprováveis antes de subir (política Meta + CDC).           ║
+     ║  Tudo centralizado no objeto CONFIG abaixo.                   ║
+     ╚═══════════════════════════════════════════════════════════════╝ -->
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <button class="back" id="backBtn" aria-label="Voltar" hidden>‹</button>
+    <div class="prog"><div class="prog-fill" id="pFill"></div></div>
+  </div>
+</div>
+
+<main class="stage" id="stage" aria-live="polite"></main>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   RECONEXÃO SAGRADA — FUNIL DE QUIZ
+   SPA data-driven. Fluxo: TELA 0 (landing) → Q1..Q26 + INT 1..7
+   → REVEAL → EMILY → LOADING → OFERTA/CHECKOUT.
+   ════════════════════════════════════════════════════════════════════ */
+
+const CONFIG = {
+  checkout: 'https://pay.hotmart.com/K103320493O?off=aakzh965&checkoutMode=10',
+
+  // [PLACEHOLDER] prova social da landing — usar números reais/comprováveis
+  trustRating: '4,8/5',
+  trustReviews: '3.739 avaliações',
+  trustCount:  '+8 mil mulheres já fizeram este teste',
+
+  // [PLACEHOLDER] INT-1
+  int1Num:  '8 mil',
+  int1Stat: '9 em cada 10 relataram sentir o parceiro mais presente já nas primeiras semanas.',
+
+  // Autoridade Emily (trocar aqui se quiser o ângulo "psicologia do apego")
+  emilyCred: 'Psicóloga · Especialista em Relacionamento e Sexualidade',
+  emilyMulheres: '+2.000 mulheres acompanhadas', // [confirmar nº antes de subir]
+
+  // Depoimentos reais já usados na página de vendas (assets existentes)
+  testimonials: [
+    { img:'assets/depoimentos/fernanda.jpg', name:'Fernanda M.', loc:'38 anos',
+      text:'eu fingia que tava dormindo pra não ter que tentar... porque ser rejeitada pelo próprio marido é uma humilhação que a gente não conta pra ninguém. no dia 12 ele veio até mim sem eu fazer nada. fiquei em choque 🥹' },
+    { img:'assets/depoimentos/camila.jpg', name:'Camila R.', loc:'34 anos',
+      text:'mds eu já tava pesquisando advogado, juro. não aguentava mais me sentir invisível dentro de casa. na terceira semana ele me mandou mensagem do trabalho perguntando se eu tava bem. esse "só isso" eu não recebia faz dois anos 😭' },
+    { img:'assets/depoimentos/patricia.jpg', name:'Patrícia S.', loc:'41 anos',
+      text:'tinha parado de me arrumar completamente, pra quê né? aí quando entendi que eu tinha me perdido, não ele... algo mudou em mim. ele notou antes de eu fazer qualquer coisa!! me olhou de um jeito que eu não via faz tempooo ❤️' },
+  ],
+};
+
+/* ── ESTADO ─────────────────────────────────────────────────────────── */
+const A = {};
+const SCORE = { inv:0, carrega:0, sil:0, acredita:0 };
+
+/* ── PERFIS ─────────────────────────────────────────────────────────── */
+const PROFILES = {
+  sil: {
+    name: 'O Silêncio Confortável',
+    int4: 'Não tem grito, não tem briga — tem um silêncio que foi ocupando o lugar de tudo. Vocês não se perderam de raiva. Se perderam de distração. E é exatamente esse tipo de distância que volta mais rápido quando se sabe por onde começar.',
+    diag: 'Entre vocês não tem guerra — tem um silêncio que foi ocupando o lugar do que um dia foi cumplicidade. Esse tipo de distância assusta porque é discreta, mas é também a que volta mais rápido: ela não pede reconstrução do zero, pede reconexão. É exatamente aí que o Plano de 21 Dias começa.',
+  },
+  carrega: {
+    name: 'A Que Carrega Tudo',
+    int4: 'Você virou o alicerce que segura a casa e ninguém cuida de você. Foi se apagando aos poucos, mudando quem era pra caber na relação, achando que assim ele ia te querer mais. Isso não é fraqueza, é amor mal direcionado. Quando essa energia muda de lugar, ele sente. Sempre sente.',
+    diag: 'Você virou o alicerce que segura tudo — e foi se apagando no processo, achando que se dedicar mais traria ele de volta. Não é fraqueza, é amor no lugar errado. Quando essa energia muda de direção, ele sente. Seu perfil é dos que mais surpreendem na virada. É exatamente aí que o Plano de 21 Dias começa.',
+  },
+  inv: {
+    name: 'A Que Ele Parou de Ver',
+    int4: 'Não porque você sumiu — você está aí, inteira. É que o olhar apaixonado dele se desligou no automático. E o olhar volta. Não com cobrança: com presença. É isso que você vai recuperar primeiro.',
+    diag: 'Você é uma parceira que ama de verdade, mas a distância emocional e física criou um buraco que só cresce no silêncio. A boa notícia: o seu perfil é o que mais responde rápido quando o foco volta pra presença, e não pra cobrança. É exatamente aí que o Plano de 21 Dias começa.',
+  },
+  acredita: {
+    name: 'A Que Ainda Acredita',
+    int4: 'Mesmo cansada, tem uma parte de você que não soltou a mão dessa história. Essa esperança não é ingenuidade, é o combustível que faz a virada acontecer. O que falta não é vontade. É o mapa.',
+    diag: 'Mesmo cansada, você não soltou a mão dessa história — e essa esperança é o combustível mais raro e mais valioso pra reconstrução. O que falta não é vontade, é o mapa. Seu perfil é o que chega mais rápido ao resultado quando recebe o passo a passo certo. É exatamente aí que o Plano de 21 Dias começa.',
+  },
+};
+
+/* ── SCORING ────────────────────────────────────────────────────────── */
+function add(p, n) { SCORE[p] += n; }
+function has(id, val) { return Array.isArray(A[id]) && A[id].includes(val); }
+function computeProfile() {
+  const order = ['inv', 'carrega', 'sil', 'acredita'];
+  let best = order[0];
+  order.forEach(k => { if (SCORE[k] > SCORE[best]) best = k; });
+  return best;
+}
+function hopeSeal() { return (A.q21 || 0) >= 4; }
+
+/* ── BARRAS ─────────────────────────────────────────────────────────── */
+function lvlComunicacao() { return (A.q4==='raramente'||A.q4==='quasenada') ? 'baixa' : (A.q4==='todo' ? 'alta' : 'media'); }
+function lvlVista()       { return (A.q5==='otempotodo'|| (A.q15&&A.q15<=2)) ? 'baixa' : ((A.q15&&A.q15>=4) ? 'alta' : 'media'); }
+function lvlFisica()      { return ((A.q12==='umamesoumenos'||A.q12==='fazmeses')||(A.q14&&A.q14>=4)) ? 'baixa' : ((A.q14&&A.q14<=2) ? 'alta' : 'media'); }
+function lvlEsperanca() {
+  if (A.q21 >= 4) return 'alta';
+  if (A.q21 === 3) return 'media';
+  if (A.q21 >= 1 && A.q21 <= 2) return 'baixa';
+  return has('__entry','acredita') ? 'alta' : 'media';
+}
+const LVL_TXT = { baixa:'Baixa', media:'Média', alta:'Alta' };
+function bars() {
+  return [
+    { label:'Comunicação',     lvl: lvlComunicacao() },
+    { label:'Sentir-se vista',  lvl: lvlVista() },
+    { label:'Conexão física',   lvl: lvlFisica() },
+    { label:'Esperança',        lvl: lvlEsperanca() },
+  ];
+}
+function riskLevel() { return bars().filter(b => b.lvl === 'baixa').length >= 3 ? 'alto' : 'atencao'; }
+
+/* ── VARIÁVEIS DINÂMICAS ────────────────────────────────────────────── */
+function tempoFrase() {
+  return ({ menos2:'esse tempo juntos', a2a5:'esses anos juntos',
+            a6a15:'todos esses anos juntos', mais15:'mais de 15 anos juntos' })[A.q1] || 'esse tempo juntos';
+}
+function metaDateStr() {
+  const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  const d = new Date(); d.setDate(d.getDate() + 21);
+  return d.getDate() + ' de ' + meses[d.getMonth()];
+}
+const BENEFIT_TXT = {
+  conexao:'sentir de novo a conexão', paixao:'reacender a paixão', segura:'se sentir segura com ele',
+  intimidade:'ter uma intimidade de verdade', conversar:'conversar sem virar briga',
+  vista:'voltar a se sentir vista', ficar:'parar de pensar em ir embora',
+};
+function topBenefits() {
+  return (Array.isArray(A.q24) ? A.q24 : []).map(v => BENEFIT_TXT[v]).filter(Boolean).slice(0, 2);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   FLUXO
+   ════════════════════════════════════════════════════════════════════ */
+const FLOW = [
+  { type:'cover',  id:'cover' },
+  { type:'entryq', id:'entry' },
+
+  { type:'question', id:'q1', qi:1, kind:'single',
+    title:'Há quanto tempo vocês estão juntos?', note:'Suas respostas são 100% confidenciais.',
+    opts:[
+      { v:'menos2', ic:'🌱', tx:'Menos de 2 anos' },
+      { v:'a2a5',   ic:'🌿', tx:'2 a 5 anos' },
+      { v:'a6a15',  ic:'🌳', tx:'6 a 15 anos' },
+      { v:'mais15', ic:'🌲', tx:'Mais de 15 anos' },
+    ] },
+
+  { type:'question', id:'q2', qi:2, kind:'single',
+    title:'Hoje, como vocês vivem?',
+    opts:[
+      { v:'juntos',     ic:'🏠', tx:'Moramos juntos' },
+      { v:'invisiveis', ic:'🫥', tx:'Moramos juntos, mas como se fôssemos invisíveis um pro outro' },
+      { v:'distancia',  ic:'📍', tx:'Relação à distância' },
+      { v:'separados',  ic:'🛏️', tx:'Já estamos dormindo em quartos / camas separados' },
+    ] },
+
+  { type:'question', id:'q3', qi:3, kind:'single',
+    title:'Aconteceu alguma mudança grande nos últimos tempos que mexeu com vocês?',
+    opts:[
+      { v:'filhossairam', ic:'🪺', tx:'Filhos cresceram / saíram de casa' },
+      { v:'nasceu',       ic:'👶', tx:'Nasceu um filho' },
+      { v:'trabalho',     ic:'💼', tx:'Mudança de trabalho, desemprego ou aposentadoria' },
+      { v:'saude',        ic:'🩺', tx:'Problema de saúde (seu ou dele)' },
+      { v:'financeiro',   ic:'💸', tx:'Aperto financeiro' },
+      { v:'pordentro',    ic:'🌧️', tx:'Nada mudou por fora — mas por dentro mudou tudo' },
+      { v:'outro',        ic:'💭', tx:'Outro' },
+    ] },
+
+  { type:'interstitial', id:'int1', icon:'💞', render: () => ({
+      bigNum: CONFIG.int1Num + ' mulheres',
+      body: '<p>já usaram este método para reconstruir a conexão que parecia perdida.</p>'
+          + '<div class="stat">'+CONFIG.int1Stat+'</div>',
+      cta:'Continuar',
+    }) },
+
+  { type:'question', id:'q4', qi:4, kind:'single',
+    title:'Com que frequência vocês têm uma conversa de verdade — não sobre contas, filhos ou logística?',
+    opts:[
+      { v:'todo',      ic:'💬', tx:'Todo dia' },
+      { v:'algumas',   ic:'🗨️', tx:'Algumas vezes na semana' },
+      { v:'raramente', ic:'💤', tx:'Raramente', score:{ sil:2 } },
+      { v:'quasenada', ic:'🤐', tx:'A gente quase não se fala mais', score:{ sil:2 } },
+    ] },
+
+  { type:'question', id:'q5', qi:5, kind:'single',
+    title:'Você já se sentiu sozinha mesmo estando com ele?',
+    opts:[
+      { v:'otempotodo', ic:'😔', tx:'O tempo todo', score:{ inv:2 } },
+      { v:'asvezes',    ic:'😐', tx:'Às vezes' },
+      { v:'quasenunca', ic:'🙂', tx:'Quase nunca' },
+    ] },
+
+  { type:'question', id:'q6', qi:6, kind:'single',
+    title:'Quando foi a última vez que você se sentiu desejada e escolhida por ele?',
+    opts:[
+      { v:'pouco',      ic:'🙂', tx:'Faz pouco tempo, mas é raro' },
+      { v:'meses',      ic:'🕐', tx:'Faz alguns meses' },
+      { v:'maisdeumano',ic:'📅', tx:'Faz mais de um ano', score:{ inv:1, carrega:1 } },
+      { v:'naolembro',  ic:'💔', tx:'Sinceramente? Não lembro', score:{ inv:1, carrega:1 } },
+    ] },
+
+  { type:'question', id:'q7', qi:7, kind:'multi',
+    title:'O que mais dói no relacionamento de vocês agora?', sub:'Marque tudo o que se aplica.',
+    opts:[
+      { v:'desejo',   ic:'💔', tx:'A gente perdeu o desejo, o toque, a intimidade' },
+      { v:'colegas',  ic:'😒', tx:'Viramos colegas de quarto', score:{ sil:2 } },
+      { v:'paixao',   ic:'✨', tx:'A paixão simplesmente apagou' },
+      { v:'perdi',    ic:'😔', tx:'Eu me perdi dentro dessa relação', score:{ carrega:2 } },
+      { v:'rejeitada',ic:'❌', tx:'Me sinto rejeitada, como se ele não me quisesse', score:{ inv:2 } },
+      { v:'discute',  ic:'🗣️', tx:'A gente só discute, ou só se cala' },
+      { v:'falta',    ic:'🫥', tx:'Sinto a falta dele mais do que ele sente a minha', score:{ carrega:2 } },
+      { v:'outro',    ic:'💭', tx:'Outro' },
+    ] },
+
+  { type:'interstitial', id:'int2', dark:true, render: () => {
+      if (has('q7','colegas')) return {
+        quote:'“Parece que você divide a casa com um estranho que tem o seu sobrenome.”',
+        body:'<p>Você não está sozinha. A maioria das mulheres que sente isso achava que eram as únicas. Mas não é. Existe um padrão. E padrões podem ser revertidos.</p>',
+        cta:'Continuar' };
+      if (has('q7','rejeitada') || has('q7','falta')) return {
+        quote:'“Cansa ser sempre a única que tenta.”',
+        body:'<p>Você ama, cuida, segura tudo e ainda assim sente que é a única que se esforça para o relacionamento dar certo. Isso tem nome, tem causa. E tem caminho de volta.</p>',
+        cta:'Continuar' };
+      return {
+        quote:'“A distância não chegou de uma vez. Ela foi se instalando no silêncio.”',
+        body:'<p>Por isso quase ninguém percebe a tempo. Mas o fato de você estar aqui já diz uma coisa: lá no fundo, algo aí dentro ainda acredita.</p>',
+        cta:'Continuar' };
+    } },
+
+  { type:'question', id:'q8', qi:8, kind:'single',
+    title:'Com que frequência você sente que dá mais do que recebe nessa relação?',
+    opts:[
+      { v:'quasesempre', ic:'🕐', tx:'Quase sempre', score:{ carrega:3 } },
+      { v:'asvezes',     ic:'🕑', tx:'Às vezes' },
+      { v:'quasenunca',  ic:'🙂', tx:'Quase nunca' },
+    ] },
+
+  { type:'question', id:'q9', qi:9, kind:'single',
+    title:'Em algum momento você pensou que isso pode acabar de vez?',
+    opts:[
+      { v:'sim',    ic:'😢', tx:'Sim, está mais perto do que nunca' },
+      { v:'medo',   ic:'😟', tx:'Tenho medo de que sim' },
+      { v:'luto',   ic:'🥺', tx:'Luto todo dia pra que não aconteça' },
+      { v:'nao',    ic:'🙂', tx:'Não. A gente só se perdeu um pouco' },
+    ] },
+
+  { type:'question', id:'q10', qi:10, kind:'single',
+    title:'O que mais te assusta quando você imagina não fazer nada?',
+    opts:[
+      { v:'distancia', ic:'🥀', tx:'A gente se distanciar de vez' },
+      { v:'filhos',    ic:'👨‍👩‍👧', tx:'O impacto nos filhos' },
+      { v:'sozinha',   ic:'🏚️', tx:'Ficar sozinha depois de tantos anos' },
+      { v:'financeiro',ic:'💸', tx:'O baque financeiro de uma separação' },
+      { v:'incerteza', ic:'❓', tx:'A incerteza de não saber o que vem' },
+      { v:'outro',     ic:'💭', tx:'Outro' },
+    ] },
+
+  { type:'question', id:'q11', qi:11, kind:'single', skippable:true,
+    title:'Vocês têm filhos que seriam afetados?',
+    opts:[
+      { v:'sentindo',  ic:'💛', tx:'Sim, e já estão sentindo' },
+      { v:'naopercebem',ic:'🧒', tx:'Sim, mas ainda não percebem' },
+      { v:'pequenos',  ic:'🍼', tx:'Sim, ainda pequenos' },
+      { v:'naotem',    ic:'🚫', tx:'Não temos filhos' },
+      { v:'outro',     ic:'💭', tx:'Outro' },
+    ] },
+
+  { type:'interstitial', id:'int3', icon:'🏡', render: () => {
+      const map = {
+        menos2:{ q:'“Vocês ainda estão no começo — e mesmo assim algo já travou.”',
+                 b:'Não se desiste do começo de vocês sem antes entender o que travou. O custo de tentar agora é uma fração do custo de carregar isso por anos — e quem está aqui já entendeu isso.' },
+        a2a5:{ q:'“Você sabe o que esses anos juntos significam.”',
+               b:'Não se joga fora esses anos de história sem antes tentar de verdade. O custo de tentar é uma fração do custo de desistir — e quem está aqui já entendeu isso.' },
+        a6a15:{ q:'“Você sabe o que todos esses anos juntos significam.”',
+                b:'Não se joga fora todos esses anos de história sem antes tentar de verdade. O custo de tentar é uma fração do custo de desistir — e quem está aqui já entendeu isso.' },
+        mais15:{ q:'“Você sabe o que mais de 15 anos juntos significam.”',
+                 b:'Não se joga fora mais de 15 anos de história sem antes tentar de verdade. O custo de tentar é uma fração do custo de desistir — e quem está aqui já entendeu isso.' },
+      };
+      const m = map[A.q1] || map.a6a15;
+      return { quote:m.q, body:'<p>'+m.b+'</p>', cta:'Continuar' };
+    } },
+
+  { type:'question', id:'q12', qi:12, kind:'single',
+    title:'Com que frequência vocês têm intimidade física hoje?',
+    reactiveNote: () => (A.q12==='umamesoumenos'||A.q12==='fazmeses')
+      ? '“Em mais de 2 mil mulheres que acompanhei, quase nunca a distância na cama começou na cama. Ela começou bem antes, na conexão que foi se desligando no silêncio.” — Emily Ribeiro, psicóloga'
+      : '',
+    opts:[
+      { v:'semana',        ic:'🔥', tx:'Algumas vezes na semana' },
+      { v:'mes',           ic:'🌤️', tx:'Algumas vezes no mês' },
+      { v:'umamesoumenos', ic:'☁️', tx:'Uma vez por mês ou menos' },
+      { v:'fazmeses',      ic:'🌫️', tx:'Faz meses' },
+    ] },
+
+  { type:'question', id:'q13', qi:13, kind:'single',
+    title:'Quando você tenta se aproximar dele, o que costuma acontecer?',
+    opts:[
+      { v:'cansado',   ic:'😮‍💨', tx:'"Tô cansado" ou alguma desculpa' },
+      { v:'ausente',   ic:'😶', tx:'Ele aceita, mas dá pra ver que não está ali' },
+      { v:'irrita',    ic:'😠', tx:'Ele se irrita' },
+      { v:'depois',    ic:'⏳', tx:'Um "depois" que nunca chega' },
+      { v:'rejeicao',  ic:'🚪', tx:'Rejeição na cara', score:{ inv:1 } },
+      { v:'funciona',  ic:'💗', tx:'Ainda funciona bem entre a gente' },
+    ] },
+
+  { type:'question', id:'q14', qi:14, kind:'scale',
+    title:'O quanto a distância emocional afetou a parte física de vocês?',
+    minLabel:'Não afetou', maxLabel:'Afetou demais' },
+
+  { type:'question', id:'q15', qi:15, kind:'scale',
+    title:'Hoje, o quanto você se sente desejada por ele?',
+    minLabel:'Nunca', maxLabel:'Sempre',
+    scaleScore: v => v <= 2 ? { inv:2 } : null },
+
+  { type:'question', id:'q16', qi:16, kind:'multi',
+    title:'O que mais bloqueia a intimidade de vocês hoje?', sub:'Marque tudo o que se aplica.',
+    opts:[
+      { v:'estresse',   ic:'😰', tx:'Estresse e cansaço do dia a dia' },
+      { v:'magoas',     ic:'😤', tx:'Brigas e mágoas não resolvidas' },
+      { v:'desconexao', ic:'🫥', tx:'A gente se desconectou emocionalmente' },
+      { v:'interesse',  ic:'💔', tx:'A sensação de que ele perdeu o interesse' },
+      { v:'naosei',     ic:'🤷', tx:'Sinceramente, não sei' },
+      { v:'outro',      ic:'💭', tx:'Outro' },
+      { v:'nenhum',     ic:'✅', tx:'Nenhum desses' },
+    ] },
+
+  { type:'interstitial', id:'int4', kind:'profile', render: () => {
+      const p = PROFILES[computeProfile()];
+      return {
+        kicker:'✦ Análise parcial',
+        h2:'Olha o que suas respostas já revelam.',
+        subline:'Com base no que você respondeu até aqui.',
+        showBars:true,
+        profile:{ name:'Seu padrão: '+p.name, text:p.int4 },
+        cta:'Continuar',
+      };
+    } },
+
+  { type:'question', id:'q17', qi:17, kind:'single',
+    title:'Como ele é, no fundo?',
+    opts:[
+      { v:'racional', ic:'🧠', tx:'Mais racional, fechado, "resolve por dentro"' },
+      { v:'emotivo',  ic:'❤️', tx:'Mais emotivo, mas não demonstra' },
+      { v:'misto',    ic:'⚖️', tx:'Um pouco dos dois' },
+    ] },
+
+  { type:'question', id:'q18', qi:18, kind:'single',
+    title:'Por que você acha que ele se afastou?',
+    opts:[
+      { v:'atracao',  ic:'🥀', tx:'Perdeu a atração por mim' },
+      { v:'energia',  ic:'🔋', tx:'Anda sem energia / desanimado com tudo' },
+      { v:'magoado',  ic:'🤐', tx:'Está magoado com algo que não fala' },
+      { v:'naoideia', ic:'❓', tx:'Sinceramente, não faço ideia' },
+    ] },
+
+  { type:'question', id:'q19', qi:19, kind:'multi',
+    title:'Quais desses sinais você percebe nele?', sub:'Marque tudo o que se aplica.',
+    opts:[
+      { v:'curto',     ic:'💬', tx:'Responde curto, monossilábico' },
+      { v:'celular',   ic:'📱', tx:'Vive no celular perto de você' },
+      { v:'evita',     ic:'🙄', tx:'Evita conversas que "pesam"' },
+      { v:'naoprocura',ic:'❄️', tx:'Não procura mais, não toca, não puxa assunto' },
+      { v:'ausente',   ic:'🫥', tx:'Parece presente de corpo, ausente de cabeça' },
+      { v:'nenhum',    ic:'✅', tx:'Nenhum desses' },
+    ] },
+
+  { type:'interstitial', id:'int5', dark:true, icon:'🗝️', render: () => ({
+      quote:'“O que ele não fala não é falta de sentimento. É excesso dele, sem saber o que fazer.”',
+      body:'<p>Homem que se cala não é homem que parou de sentir — é homem que se desligou pra não lidar com o que sente. Existe um mapa por trás desse silêncio: cada sinal que ele dá significa algo específico. Quando você aprende a ler, para de adivinhar e começa a agir certo.</p>',
+      signed:'— Emily Ribeiro, psicóloga',
+      cta:'Continuar',
+    }) },
+
+  { type:'question', id:'q20', qi:20, kind:'scale',
+    title:'O quanto você sente que se perdeu dentro desse relacionamento?',
+    minLabel:'Me perdi completamente', maxLabel:'Continuo inteira',
+    scaleScore: v => v <= 2 ? { carrega:1, inv:1 } : null },
+
+  { type:'question', id:'q21', qi:21, kind:'scale',
+    title:'O quanto você ainda acredita que dá pra reconstruir?',
+    minLabel:'Quase sem esperança', maxLabel:'Acredito muito' },
+
+  { type:'interstitial', id:'int6', icon:'🌅', render: () => (A.q21 >= 4) ? {
+      quote:'Sua esperança é mais forte do que você imagina.',
+      body:'<p>Você ainda acredita — e isso não é ingenuidade, é o que torna a mudança possível. Quem chega aqui acreditando volta mais rápido. Falta só o passo a passo.</p>',
+      cta:'Continuar' } : {
+      quote:'Não precisa acreditar agora. Precisa só dar o primeiro passo.',
+      body:'<p>Quase toda mulher que reconstruiu chegou exatamente onde você está — sem fé, só cansada. A esperança não vem antes da mudança. Ela nasce do primeiro gesto que dá certo.</p>',
+      cta:'Continuar' } },
+
+  { type:'question', id:'q22', qi:22, kind:'single',
+    title:'Você já tentou resolver isso antes?',
+    opts:[
+      { v:'ajudou',     ic:'🙂', tx:'Sim, e ajudou um pouco' },
+      { v:'naomudou',   ic:'😞', tx:'Sim, mas não mudou nada' },
+      { v:'aberta',     ic:'🤲', tx:'Não, mas estou aberta' },
+      { v:'descrente',  ic:'😬', tx:'Não, e confesso que estou descrente' },
+      { v:'outro',      ic:'💭', tx:'Outro' },
+    ] },
+
+  { type:'question', id:'q23', qi:23, kind:'single',
+    title:'Ele percebe que você está tentando?',
+    opts:[
+      { v:'sim',      ic:'👀', tx:'Sim' },
+      { v:'talvez',   ic:'🤔', tx:'Talvez' },
+      { v:'provnao',  ic:'😕', tx:'Provavelmente não' },
+      { v:'nao',      ic:'🙅', tx:'Não' },
+    ] },
+
+  { type:'question', id:'q24', qi:24, kind:'multi',
+    title:'Se as coisas melhorassem, o que mais faria diferença pra você?', sub:'Pode escolher quantas quiser.',
+    opts:[
+      { v:'conexao',   ic:'💗', tx:'Sentir de novo a conexão emocional' },
+      { v:'paixao',    ic:'🔥', tx:'A paixão voltar' },
+      { v:'segura',    ic:'🫂', tx:'Me sentir segura e tranquila com ele' },
+      { v:'intimidade',ic:'💋', tx:'Uma intimidade que seja de verdade' },
+      { v:'conversar', ic:'🗣️', tx:'Conversar sem virar briga' },
+      { v:'vista',     ic:'👀', tx:'Voltar a me sentir vista e valorizada' },
+      { v:'ficar',     ic:'⏳', tx:'Parar de pensar em ir embora' },
+    ] },
+
+  { type:'question', id:'q25', qi:25, kind:'scale',
+    title:'Você ainda consegue se imaginar envelhecendo ao lado dele?',
+    minLabel:'Não consigo', maxLabel:'Com certeza' },
+
+  { type:'question', id:'q26', qi:26, kind:'single',
+    title:'Se você pudesse salvar esse relacionamento, você ia querer?',
+    opts:[
+      { v:'comtudo',  ic:'❤️', tx:'Sim, com tudo' },
+      { v:'sevir',    ic:'💡', tx:'Se eu vir que tem como funcionar' },
+      { v:'incerta',  ic:'❓', tx:'Não tenho certeza' },
+      { v:'nao',      ic:'✖️', tx:'Não' },
+    ] },
+
+  { type:'interstitial', id:'int7', icon:'✨', render: () => ({
+      kicker:'✦ Montando seu plano',
+      h2:'Seu plano vai ser montado com base no método de Reconexão Sagrada de 21 dias.',
+      body:'<p>Seu compromisso depois de '+tempoFrase()+' é exatamente o que faz esse método funcionar. Ele usa o que a ciência do apego já mostrou sobre como casais reconstroem vínculo — traduzido em gestos concretos, um por dia.</p>'
+        + '<div class="stat">MÉTODO CRIADO POR EMILY RIBEIRO · psicóloga · '+CONFIG.emilyMulheres+'</div>',
+      cta:'Continuar',
+    }) },
+
+  { type:'reveal', id:'reveal' },
+  { type:'emily', id:'emily' },
+  { type:'loading', id:'loading' },
+  { type:'offer', id:'offer' },
+];
+
+/* ════════════════════════════════════════════════════════════════════
+   MOTOR DE RENDER / NAVEGAÇÃO
+   ════════════════════════════════════════════════════════════════════ */
+let idx = 0, navDir = 1;
+const stage = document.getElementById('stage');
+const pFill = document.getElementById('pFill');
+const backBtn = document.getElementById('backBtn');
+
+backBtn.addEventListener('click', () => { if (idx > 0) { navDir = -1; idx--; render(); } });
+
+/* ── TELEMETRIA SUPABASE (métricas do quiz) ── */
+const SB = {
+  url: 'https://lfbzqeafgaowitraheuf.supabase.co',
+  key: 'sb_publishable_ptzPBx5eHfe2h9Mt1BmXNA_SNAvJHv1',
+  sid: (function () { try { return crypto.randomUUID(); } catch (e) { return 'x' + Date.now() + '-' + Math.random().toString(16).slice(2); } })(),
+  started: false,
+  _p: new URLSearchParams(location.search),
+  _post: function (table, body) {
+    try {
+      fetch(this.url + '/rest/v1/' + table, {
+        method: 'POST', keepalive: true,
+        headers: { apikey: this.key, Authorization: 'Bearer ' + this.key, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify(body)
+      }).catch(function () {});
+    } catch (e) {}
+  },
+  _start: function () {
+    if (this.started) return; this.started = true;
+    var p = this._p, g = function (k) { return p.get(k) || null; };
+    var mob = false; try { mob = matchMedia('(max-width:760px)').matches; } catch (e) {}
+    this._post('quiz_sessions', {
+      session_id: this.sid,
+      utm_source: g('utm_source'), utm_medium: g('utm_medium'), utm_campaign: g('utm_campaign'),
+      utm_content: g('utm_content'), utm_term: g('utm_term'),
+      fbclid: g('fbclid'), gclid: g('gclid'),
+      variante: g('variante') || 'quiz',
+      device: mob ? 'mobile' : 'desktop',
+      referrer: document.referrer || null,
+      user_agent: navigator.userAgent || null,
+      landing_url: location.href
+    });
+  },
+  _ev: function (type, q, ans, meta) {
+    this._post('quiz_events', {
+      session_id: this.sid, event_type: type,
+      question_id: q || null, step_index: (typeof idx === 'number' ? idx : null),
+      answer: (ans === undefined ? null : ans), meta: meta || null
+    });
+  },
+  track: function (e, x) {
+    x = x || {};
+    switch (e) {
+      case 'quiz_start':          this._start(); this._ev('start'); break;
+      case 'quiz_cta_start':      this._ev('cta_start'); break;
+      case 'quiz_entry':          this._ev('answer', 'entry', x.entry); break;
+      case 'quiz_answer':         this._ev('answer', x.q, x.a); break;
+      case 'quiz_complete':       this._ev('complete', null, null, { profile: x.profile, hope: x.hope }); break;
+      case 'quiz_offer_view':     this._ev('offer_view', null, null, { profile: x.profile }); break;
+      case 'quiz_checkout_click': this._ev('checkout_click', null, null, { profile: x.profile }); break;
+    }
+  }
+};
+
+function pushDL(event, extra) { window.dataLayer = window.dataLayer || []; window.dataLayer.push(Object.assign({ event }, extra || {})); try { SB.track(event, extra); } catch (e) {} }
+
+function applyScore(step, value) {
+  if (step._scored) return;
+  if (step.kind === 'scale' && step.scaleScore) {
+    const s = step.scaleScore(value); if (s) for (const k in s) add(k, s[k]);
+  } else if (Array.isArray(value)) {
+    step.opts.forEach(o => { if (o.score && value.includes(o.v)) for (const k in o.score) add(k, o.score[k]); });
+  } else {
+    const o = (step.opts || []).find(o => o.v === value);
+    if (o && o.score) for (const k in o.score) add(k, o.score[k]);
+  }
+  step._scored = true;
+}
+
+function setProgress(step) {
+  let pct = 0, show = false;
+  if (step.type === 'question') { pct = (step.qi / 26) * 100; show = true; }
+  else if (step.type === 'cover' || step.type === 'entryq') { pct = 0; }
+  else if (['reveal','emily','loading','offer'].includes(step.type)) { pct = 100; show = true; }
+  else { const lastQ = FLOW.slice(0, idx).filter(s => s.type === 'question').pop(); pct = lastQ ? (lastQ.qi / 26) * 100 : 6; }
+  pFill.style.width = pct + '%';
+  backBtn.hidden = (idx === 0 || step.type === 'loading' || step.type === 'offer');
+}
+
+function go() { navDir = 1; idx++; render(); }
+
+function render() {
+  const step = FLOW[idx];
+  setProgress(step);
+  window.scrollTo(0, 0);
+  const r = ({ cover:renderCover, entryq:renderEntry, question:renderQuestion, interstitial:renderInterstitial,
+               reveal:renderReveal, emily:renderEmily, loading:renderLoading, offer:renderOffer })[step.type];
+  stage.className = 'stage' + (step.dark ? ' dark' : '');
+  stage.innerHTML = '';
+  const el = document.createElement('div');
+  el.className = 'screen ' + (navDir === 1 ? 'in-fwd' : 'in-back');
+  r(step, el);
+  stage.appendChild(el);
+}
+
+/* ── TELA 1 — CAPA ── */
+function renderCover(step, el) {
+  pushDL('quiz_start');
+  el.innerHTML = `
+    <div class="landing">
+      <span class="wordmark">Reconexão <span class="x">✦</span> Sagrada</span>
+      <h1>Você não perdeu o amor dele. Vocês perderam <span class="em-wine">o caminho um do outro</span>.</h1>
+      <p class="lead">Faça o teste de 2 minutos e descubra exatamente onde a conexão se rompeu — e <b>como reconstruir a paixão em 21 dias</b>.</p>
+      <div class="btn-wrap"><button class="btn" id="startBtn">Fazer o teste <span class="arr">→</span></button></div>
+      <div class="trust">
+        <span class="pill"><span class="stars">★★★★★</span> ${CONFIG.trustRating} · ${CONFIG.trustReviews}</span>
+        <span class="pill">👩 ${CONFIG.trustCount}</span>
+      </div>
+      <p class="legal">Ao continuar, você concorda com os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>. Suas respostas são 100% confidenciais.</p>
+    </div>`;
+  el.querySelector('#startBtn').addEventListener('click', () => { pushDL('quiz_cta_start'); go(); });
+}
+
+/* ── TELA 2 — PERGUNTA DE ENTRADA (semeia o perfil) ── */
+function renderEntry(step, el) {
+  el.innerHTML = `
+    <div class="landing">
+      <h2 class="q-title">Com qual dessas frases você mais se identifica hoje?</h2>
+      <div class="opts" id="entryOpts"></div>
+    </div>`;
+  const entryOpts = [
+    { seed:'sil',      v:'sil',      ic:'🏠', tx:'"A gente virou dois estranhos dividindo a mesma casa."' },
+    { seed:'carrega',  v:'carrega',  ic:'😔', tx:'"Eu faço tudo por ele — e ele mal percebe."' },
+    { seed:'inv',      v:'inv',      ic:'🫥', tx:'"Ele não me enxerga mais como antes."' },
+    { seed:'acredita', v:'acredita', ic:'🤍', tx:'"Eu ainda amo. Só não sei se ele ainda me quer."' },
+  ];
+  const box = el.querySelector('#entryOpts');
+  entryOpts.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'opt opt-anim'; b.style.animationDelay = (i * 0.06) + 's';
+    b.innerHTML = `<span class="opt-emoji">${o.ic}</span><span class="opt-tx">${o.tx}</span><span class="opt-check">✓</span>`;
+    b.addEventListener('click', () => {
+      if (b.dataset.lock) return; b.dataset.lock = '1';
+      b.classList.add('sel');
+      add(o.seed, 2); A.__entry = [o.seed]; A.entry = o.v;
+      pushDL('quiz_entry', { entry: o.v });
+      setTimeout(go, 300);
+    });
+    box.appendChild(b);
+  });
+}
+
+/* ── QUESTION ── */
+function renderQuestion(step, el) {
+  const head = `<h2 class="q-title">${step.title}</h2>${step.sub ? `<p class="q-sub">${step.sub}</p>` : ''}`;
+  if (step.kind === 'scale') { renderScale(step, el, head); return; }
+
+  const multi = step.kind === 'multi';
+  el.innerHTML = head + `<div class="opts" id="opts"></div><div id="reactNote"></div>
+    ${multi ? `<div class="btn-wrap"><button class="btn" id="contBtn" disabled>Continuar <span class="arr">→</span></button></div>` : ''}
+    ${step.skippable ? `<p class="q-note"><a href="#" id="skip">Prefiro pular essa</a></p>` : ''}`;
+
+  const box = el.querySelector('#opts');
+  const cur = multi ? (A[step.id] || []) : A[step.id];
+  step.opts.forEach((o, i) => {
+    const sel = multi ? cur.includes(o.v) : false;
+    const b = document.createElement('button');
+    b.className = 'opt opt-anim' + (multi ? ' multi' : '') + (sel ? ' sel' : '');
+    b.style.animationDelay = (i * 0.045) + 's';
+    b.innerHTML = `<span class="opt-emoji">${o.ic || '•'}</span><span class="opt-tx">${o.tx}</span><span class="opt-check">${sel?'✓':''}</span>`;
+    b.addEventListener('click', () => {
+      if (multi) {
+        let arr = A[step.id] || [];
+        if (arr.includes(o.v)) arr = arr.filter(x => x !== o.v); else arr = arr.concat(o.v);
+        A[step.id] = arr;
+        b.classList.toggle('sel'); b.querySelector('.opt-check').textContent = arr.includes(o.v) ? '✓' : '';
+        el.querySelector('#contBtn').disabled = arr.length === 0;
+      } else {
+        if (b.dataset.lock) return;
+        A[step.id] = o.v; applyScore(step, o.v);
+        pushDL('quiz_answer', { q: step.id, a: o.v });
+        box.querySelectorAll('.opt').forEach(x => { x.classList.remove('sel'); x.dataset.lock = '1'; });
+        b.classList.add('sel');
+        if (step.reactiveNote && step.reactiveNote()) {
+          el.querySelector('#reactNote').innerHTML =
+            `<div class="profile-card" style="margin-top:18px"><p style="font-family:var(--serif);font-style:italic;font-size:1.05rem">${step.reactiveNote()}</p></div>
+             <div class="btn-wrap"><button class="btn" id="contBtn">Continuar <span class="arr">→</span></button></div>`;
+          el.querySelector('#contBtn').addEventListener('click', go);
+        } else { setTimeout(go, 300); }
+      }
+    });
+    box.appendChild(b);
+  });
+
+  if (multi) el.querySelector('#contBtn').addEventListener('click', () => { applyScore(step, A[step.id]); pushDL('quiz_answer', { q: step.id, a: (A[step.id]||[]).join(',') }); go(); });
+  if (step.skippable) el.querySelector('#skip').addEventListener('click', e => { e.preventDefault(); A[step.id] = 'pular'; go(); });
+}
+
+/* ── SCALE 1–5 ── */
+function renderScale(step, el, head) {
+  el.innerHTML = head + `<div class="scale" id="scale"></div>
+    <div class="scale-ends"><span>${step.minLabel}</span><span>${step.maxLabel}</span></div>`;
+  const box = el.querySelector('#scale');
+  for (let i = 1; i <= 5; i++) {
+    const b = document.createElement('button');
+    b.className = 'sdot opt-anim' + (A[step.id] === i ? ' sel' : '');
+    b.style.animationDelay = ((i - 1) * 0.05) + 's';
+    b.textContent = i;
+    b.addEventListener('click', () => {
+      if (b.dataset.lock) return;
+      box.querySelectorAll('.sdot').forEach(x => { x.classList.remove('sel'); x.dataset.lock = '1'; });
+      b.classList.add('sel');
+      A[step.id] = i; applyScore(step, i);
+      pushDL('quiz_answer', { q: step.id, a: i });
+      setTimeout(go, 320);
+    });
+    box.appendChild(b);
+  }
+}
+
+/* ── INTERSTITIAL ── */
+function renderInterstitial(step, el) {
+  const d = step.render();
+  let html = `<div class="inter${step.dark ? ' on-dark' : ''}">`;
+  if (step.icon) html += `<div class="icon-pop">${step.icon}</div>`;
+  if (d.bigNum) html += `<div class="big-num">${d.bigNum}</div>`;
+  if (d.h2) html += `<h2>${d.h2}</h2>`;
+  if (d.subline) html += `<p class="subline">${d.subline}</p>`;
+  if (d.quote) html += `<p class="quote">${d.quote}</p>`;
+  if (d.body) html += d.body;
+  if (d.showBars) html += renderBarsHTML();
+  if (d.profile) html += `<div class="profile-card"><div class="pname">${d.profile.name}</div><p>${d.profile.text}</p></div>`;
+  if (d.signed) html += `<p class="signed">${d.signed}</p>`;
+  html += `<div class="btn-wrap"><button class="btn" id="contBtn">${d.cta} <span class="arr">→</span></button></div></div>`;
+  el.innerHTML = html;
+  el.querySelector('#contBtn').addEventListener('click', go);
+  if (d.showBars) animateBars(el);
+}
+
+function renderBarsHTML() {
+  return `<div class="bars">` + bars().map(b =>
+    `<div class="bar-row"><div class="bl"><span>${b.label}</span><span class="lvl lvl-${b.lvl}">${LVL_TXT[b.lvl]}</span></div>
+     <div class="bar-track"><div class="bar-fill bar-${b.lvl}" data-lvl="${b.lvl}"></div></div></div>`).join('') + `</div>`;
+}
+function animateBars(el) {
+  const widths = { baixa:'26%', media:'58%', alta:'88%' };
+  requestAnimationFrame(() => setTimeout(() => {
+    el.querySelectorAll('.bar-fill').forEach(f => { f.style.width = widths[f.dataset.lvl] || '50%'; });
+  }, 120));
+}
+
+/* ── REVEAL ── */
+function renderReveal(step, el) {
+  const p = PROFILES[computeProfile()];
+  const risk = riskLevel();
+  pushDL('quiz_complete', { profile: computeProfile(), hope: hopeSeal() });
+  const disposicao = (A.q26 === 'comtudo' || A.q26 === 'sevir') ? 'Alta' : 'Média';
+  const ben = topBenefits();
+  const benLine = ben.length ? `<p class="o-sub" style="margin-top:14px">Pensado pra você <b>${ben.join('</b> e <b>')}</b>.</p>` : '';
+
+  el.innerHTML = `
+    <div class="reveal">
+      <span class="badge ${risk}">${risk === 'alto' ? '⚠ Risco Alto' : '◷ Atenção'}</span>
+      <h2>Seu diagnóstico está pronto, <span class="em-wine">${p.name}</span>.</h2>
+      <div class="metrics-line">
+        <span class="m">Conexão emocional: <b class="lvl-${lvlComunicacao()}">${LVL_TXT[lvlComunicacao()]}</b></span>
+        <span class="m">Intimidade: <b class="lvl-${lvlFisica()}">${LVL_TXT[lvlFisica()]}</b></span>
+        <span class="m">Esperança: <b class="lvl-${lvlEsperanca()}">${LVL_TXT[lvlEsperanca()]}</b></span>
+        <span class="m">Disposição pra agir: <b class="lvl-alta">${disposicao}</b></span>
+      </div>
+      <div class="diag-text">${p.diag}</div>
+      ${benLine}
+      <div class="section-label">Seu caminho de volta em 21 dias</div>
+      <div class="timeline">
+        <div class="tl-step" style="animation-delay:.05s"><div class="tl-n">Dias 1–7</div><div><h3>Você entende o que aconteceu</h3><p>O que foi apagando a mulher por quem ele se apaixonou. Ao fim da semana, você sabe exatamente onde perdeu o fio.</p></div></div>
+        <div class="tl-step" style="animation-delay:.15s"><div class="tl-n">Dias 8–14</div><div><h3>Você recupera essa mulher</h3><p>Gestos concretos, cada um com função. Você sente a diferença antes mesmo de ele notar.</p></div></div>
+        <div class="tl-step" style="animation-delay:.25s"><div class="tl-n">Dias 15–21</div><div><h3>Você volta</h3><p>Com presença, energia e identidade. A mulher que faz ele não querer estar em nenhum outro lugar.</p></div></div>
+      </div>
+      <div class="reveal-graph">
+        <div class="col"><div class="bar2" data-h="26%" style="background:linear-gradient(180deg,#e0857f,var(--bad))"></div><span class="lbl">Agora</span></div>
+        <div class="col"><div class="bar2" data-h="55%" style="background:linear-gradient(180deg,#e6bd76,var(--warn))"></div><span class="lbl">Semana 2</span></div>
+        <div class="col"><div class="bar2" data-h="92%" style="background:linear-gradient(180deg,#7fc298,var(--ok))"></div><span class="lbl">Reconectada</span></div>
+      </div>
+      <p class="meta-date">Meta projetada: <span class="dt">${metaDateStr()}</span></p>
+      <p class="btn-note">Gráfico ilustrativo. Os resultados variam de pessoa pra pessoa.</p>
+      <div class="btn-wrap"><button class="btn" id="contBtn">Ver meu plano <span class="arr">→</span></button></div>
+    </div>`;
+  el.querySelector('#contBtn').addEventListener('click', go);
+  requestAnimationFrame(() => setTimeout(() => {
+    el.querySelectorAll('.bar2').forEach(b => { b.style.height = b.dataset.h; });
+  }, 150));
+}
+
+/* ── EMILY ── */
+function renderEmily(step, el) {
+  const mirror = computeProfile() === 'carrega'
+    ? `<p class="punch">Esse padrão que você acabou de ver no seu diagnóstico? Eu vivi ele.</p>` : '';
+  el.innerHTML = `
+    <div class="emily">
+      <img class="photo" src="assets/emily/emily-sobre.jpg" alt="Emily Ribeiro">
+      <div class="photo-cap">Emily Ribeiro · ${CONFIG.emilyCred}</div>
+      <div class="letter">
+        ${mirror}
+        <p class="punch">Eu sei o que você está sentindo. Porque eu já senti.</p>
+        <p>Por anos, fui mudando quem eu era pra caber dentro de um relacionamento. O jeito de falar. O jeito de reagir. O que eu precisava. O que eu queria.</p>
+        <p>Fui me apagando aos poucos, achando que era isso que ia fazer ele me querer mais. Não fez. A gente se separou.</p>
+        <p>E na separação — a coisa mais dolorosa que já vivi — eu entendi o que mudou tudo: <strong>eu não tinha perdido ele. Eu tinha me perdido.</strong></p>
+        <p>Sou psicóloga, especialista em relacionamento, e já acompanhei mais de 2 mil mulheres. Mas foi a minha própria história que me fez criar este método. Porque quando eu voltei a ser quem eu era de verdade — ele voltou. Não porque eu pedi. Não porque ele mudou do nada. Mas porque, quando eu voltei, ele finalmente me viu.</p>
+        <p>Criei o Plano de Reconexão Sagrada de 21 dias pra você não precisar passar pela separação pra aprender o que eu aprendi.</p>
+        <div class="sig">— Emily Ribeiro</div>
+      </div>
+      <div class="btn-wrap"><button class="btn" id="contBtn">Quero esse caminho <span class="arr">→</span></button></div>
+    </div>`;
+  el.querySelector('#contBtn').addEventListener('click', go);
+}
+
+/* ── LOADING ── */
+function renderLoading(step, el) {
+  el.innerHTML = `
+    <div class="inter">
+      <h2>Montando seu plano de 21 dias…</h2>
+      <div class="load-rows">
+        <div class="load-row done" id="lr0"><span class="dot">✓</span> Mapeando seu padrão de relacionamento</div>
+        <div class="load-row" id="lr1"><span class="dot"></span> Identificando onde a conexão se rompeu</div>
+        <div class="load-row" id="lr2"><span class="dot"></span> Montando seus 21 dias</div>
+      </div>
+      <div id="testiBox"></div>
+      <div class="btn-wrap" id="loadCtaWrap" style="display:none"><button class="btn" id="contBtn">Ver meu plano <span class="arr">→</span></button></div>
+    </div>`;
+
+  const testiBox = el.querySelector('#testiBox');
+  let ti = 0;
+  function showTesti() {
+    const t = CONFIG.testimonials[ti % CONFIG.testimonials.length];
+    testiBox.innerHTML = `<div class="testi"><div class="th"><img src="${t.img}" alt="${t.name}"><div class="who"><b>${t.name}</b><span class="stars">★★★★★</span></div><span class="verif">✓ Verificado</span></div><p>${t.text}</p></div>`;
+    ti++;
+  }
+
+  microQuestion('Pra finalizar: você costuma terminar o que começa?', a1 => {
+    A.micro_termina = a1;
+    microQuestion('Mais uma: você está disposta a dedicar 10 minutos por dia?', a2 => {
+      A.micro_10min = a2; runLoadSequence();
+    });
+  });
+
+  function runLoadSequence() {
+    showTesti();
+    const tInt = setInterval(showTesti, 2600);
+    setTimeout(() => { const r = el.querySelector('#lr1'); r.classList.add('done'); r.querySelector('.dot').textContent = '✓'; }, 900);
+    setTimeout(() => { el.querySelector('#lr2').classList.add('active'); }, 1000);
+    setTimeout(() => {
+      const r = el.querySelector('#lr2'); r.classList.remove('active'); r.classList.add('done'); r.querySelector('.dot').textContent = '✓';
+      el.querySelector('#loadCtaWrap').style.display = 'block';
+      clearInterval(tInt);
+      el.querySelector('#contBtn').addEventListener('click', go);
+    }, 3600);
+  }
+}
+function microQuestion(q, cb) {
+  const m = document.createElement('div'); m.className = 'micro-modal';
+  m.innerHTML = `<div class="micro-card"><h3>${q}</h3>
+    <div class="micro-opts"><button data-v="sim">Sim</button><button data-v="nao">Não</button></div></div>`;
+  document.body.appendChild(m);
+  m.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { const v = b.dataset.v; m.remove(); cb(v); }));
+}
+
+/* ── OFERTA ── */
+function renderOffer(step, el) {
+  const p = PROFILES[computeProfile()];
+  const ben = topBenefits();
+  const benLine = ben.length
+    ? `Os 21 dias pra você <b>${ben.join('</b> e <b>')}</b> — e voltar a ser a mulher que ele não consegue ignorar.`
+    : `Os 21 dias pra você sair do silêncio e voltar a ser a mulher que ele não consegue ignorar.`;
+  pushDL('quiz_offer_view', { profile: computeProfile() });
+
+  el.innerHTML = `
+    <div class="offer">
+      <h2>Hora de voltar a ser desejada, escolhida e vista.</h2>
+      <p class="o-sub">Montado pro seu perfil — <b>${p.name}</b>. ${benLine}</p>
+      <div class="stack">
+        <div class="item main" style="animation-delay:.05s">
+          <span class="tag">★ Plano principal</span>
+          <h3>Plano de Reconexão Sagrada — 21 dias</h3>
+          <p>Semana 1: entender · Semana 2: recuperar · Semana 3: voltar. Acesso por 2 anos · app e download offline.</p>
+          <div class="val"><s>R$ 97</s></div>
+        </div>
+        <div class="item" style="animation-delay:.12s">
+          <span class="tag">🎁 Bônus 1 — Grátis hoje</span>
+          <h3>O Primeiro Gesto</h3>
+          <p>Os gestos que reativam sua presença ainda esta semana. Pra quem não aguenta mais esperar.</p>
+          <div class="val"><s>R$ 47</s><span class="free">Grátis hoje</span></div>
+        </div>
+        <div class="item" style="animation-delay:.19s">
+          <span class="tag">🎁 Bônus 2 — Grátis hoje</span>
+          <h3>A Conversa que Abre</h3>
+          <p>Como falar de verdade depois de tanto silêncio — sem virar cobrança, sem virar briga.</p>
+          <div class="val"><s>R$ 67</s><span class="free">Grátis hoje</span></div>
+        </div>
+        <div class="item" style="animation-delay:.26s">
+          <span class="tag">🎁 Bônus 3 — Grátis hoje</span>
+          <h3>O Mapa do Silêncio Dele</h3>
+          <p>O que ele sente e não fala, e o que cada sinal significa. Pra parar de adivinhar.</p>
+          <div class="val"><s>R$ 37</s><span class="free">Grátis hoje</span></div>
+        </div>
+      </div>
+      <div class="anchor">
+        <div class="total">Valor total: <s>R$ 248</s></div>
+        <div class="now-lbl">Hoje, tudo isso por</div>
+        <div class="price"><small>R$</small> 47</div>
+        <div class="install">Ou em parcelas no cartão</div>
+      </div>
+      <div class="btn-wrap">
+        <a href="${CONFIG.checkout}" target="_blank" rel="noopener" class="btn" id="checkoutBtn">Quero ele louco por mim de novo <span class="arr">→</span></a>
+        <div class="btn-note">Acesso imediato após o pagamento · Garantia de 7 dias</div>
+      </div>
+      <div class="seal"><span><b>7</b>dias</span></div>
+      <p class="guarantee"><b>Garantia incondicional de 7 dias.</b> Se você não sentir que existe um caminho de volta, devolvemos 100% — sem pergunta, sem burocracia.</p>
+    </div>
+    <footer>
+      <span class="wordmark">Reconexão <span class="x">✦</span> Sagrada</span>
+      Reconexão Sagrada © 2026 · Emily Ribeiro<br>
+      <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a> · <a href="#">Contato</a>
+    </footer>`;
+
+  const co = el.querySelector('#checkoutBtn');
+  try { const u = new URL(co.href); u.searchParams.set('perfil', computeProfile()); co.href = u.toString(); } catch (e) {}
+  co.addEventListener('click', () => pushDL('quiz_checkout_click', { profile: computeProfile() }));
+}
+
+/* ── START ── */
+render();
+</script>
+
+<!-- ✦ PRESERVAÇÃO DE PARÂMETROS / RASTREIO (mesmo da página de vendas) ✦ -->
+<script defer>
+(function () {
+    let parametros = ["utm_source"];
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    for (const [key] of params) { if (!parametros.includes(key)) { parametros.push(key); } }
+    const urlParamsCapt = new URLSearchParams(window.location.search);
+    const urlParamsCaptReferrer = new URLSearchParams(document.referrer.split('?')[1] || '');
+    let utms = {};
+    parametros.forEach(el => {
+        if (el === "utm_source") {
+            utms[el] = urlParamsCapt.get(el) ?? (document.referrer ? (urlParamsCaptReferrer.get(el) ?? new URL(document.referrer).hostname) : "direto");
+        } else {
+            utms[el] = urlParamsCapt.get(el) ?? (urlParamsCaptReferrer.get(el) ?? "");
+        }
+    });
+    let scks = Object.values(utms).filter(value => value !== "");
+    let currentSckValues = [];
+    if (urlParamsCapt.get('sck')) { currentSckValues = urlParamsCapt.get('sck').split('|'); }
+    scks = scks.filter(value => !currentSckValues.includes(value));
+    const updateLinks = (el, elURL) => {
+        const elSearchParams = new URLSearchParams(elURL.search);
+        let modified = false;
+        for (let key in utms) {
+            if (!elSearchParams.has(key)) { elSearchParams.append(key, utms[key]); modified = true; }
+        }
+        if (!elSearchParams.has('sck') && scks.length > 0) { elSearchParams.append('sck', scks.join('|')); modified = true; }
+        if (modified) { return elURL.origin + elURL.pathname + "?" + elSearchParams.toString(); }
+        return el.href;
+    };
+    document.addEventListener('click', function (ev) {
+        const a = ev.target.closest && ev.target.closest('a[href*="pay.hotmart.com"]');
+        if (!a) return;
+        const elURL = new URL(a.href);
+        a.href = updateLinks(a, elURL);
+    }, true);
+})();
+</script>
+
+<!-- ✦ RASTREAMENTO DE VARIANTE / UTM → Hotmart (igual página de vendas) ✦ -->
 <script>
 (function () {
-
-  // ── 1. VARIANTES disponíveis (~25% cada) ────────────────────────────────
-  var VARIANTS = ['b2a','c2a','c2b','df'];
-  var COOKIE_NAME = 'rs_variant';
-  var COOKIE_DAYS = 30;
-
-  // ── 2. HELPERS ───────────────────────────────────────────────────────────
-  function getCookie(name) {
-    var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-    return match ? decodeURIComponent(match[1]) : null;
-  }
-
-  function setCookie(name, value, days) {
-    var expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = name + '=' + encodeURIComponent(value)
-      + '; expires=' + expires
-      + '; path=/; SameSite=Lax';
-  }
-
-  function pickVariant() {
-    return VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
-  }
-
-  // ── 3. CAPTURA todos os parâmetros da URL atual ──────────────────────────
-  // (UTMs, click IDs de plataformas de anúncio, qualquer parâmetro custom)
-  function getCurrentParams() {
-    return new URLSearchParams(window.location.search);
-  }
-
-  // ── 4. LÓGICA PRINCIPAL ──────────────────────────────────────────────────
-  var params   = getCurrentParams();
-  var variant  = getCookie(COOKIE_NAME);
-
-  // Se não há cookie ou a variante salva não é válida, sorteia uma nova
-  if (!variant || VARIANTS.indexOf(variant) === -1) {
-    variant = pickVariant();
-    setCookie(COOKIE_NAME, variant, COOKIE_DAYS);
-  }
-
-  // Adiciona o parâmetro de variante aos UTMs existentes
-  params.set('variante', variant);
-
-  // Monta a URL de destino
-  var query    = params.toString();
-  var destPath = '/' + variant + '/';
-  var destURL  = destPath + (query ? '?' + query : '');
-
-  // Redireciona (replace para não poluir o histórico)
-  window.location.replace(destURL);
-
+  var params   = new URLSearchParams(window.location.search);
+  var variante = params.get('variante') || 'quiz';
+  var utmSource   = params.get('utm_source')   || '';
+  var utmMedium   = params.get('utm_medium')   || '';
+  var utmCampaign = params.get('utm_campaign') || '';
+  var utmContent  = params.get('utm_content')  || '';
+  var utmTerm     = params.get('utm_term')     || '';
+  var fbclid      = params.get('fbclid')       || '';
+  var gclid       = params.get('gclid')        || '';
+  var src = 'quiz_' + variante;
+  window.__buildHotmart = function (a) {
+    try {
+      var url = new URL(a.href);
+      url.searchParams.set('src', src);
+      if (utmSource)   url.searchParams.set('utm_source',   utmSource);
+      if (utmMedium)   url.searchParams.set('utm_medium',   utmMedium);
+      if (utmCampaign) url.searchParams.set('utm_campaign', utmCampaign);
+      if (utmContent)  url.searchParams.set('utm_content',  utmContent);
+      if (utmTerm)     url.searchParams.set('utm_term',     utmTerm);
+      if (fbclid)      url.searchParams.set('fbclid',       fbclid);
+      if (gclid)       url.searchParams.set('gclid',        gclid);
+      a.href = url.toString();
+    } catch (e) {}
+  };
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href*="pay.hotmart.com"]');
+    if (a) window.__buildHotmart(a);
+  }, true);
 })();
 </script>
 
