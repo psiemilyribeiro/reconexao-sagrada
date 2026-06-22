@@ -95,6 +95,19 @@
   .ans-bar{background:#efe3da;border-radius:6px;height:7px;overflow:hidden}
   .ans-bar i{display:block;height:100%;background:var(--dourado);border-radius:6px}
 
+  /* A/B tela 1 */
+  .ab-row{display:grid;grid-template-columns:78px 1fr 130px 96px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+  .ab-row:last-child{border-bottom:none}
+  .ab-name{font-weight:800;color:var(--vinho);font-size:1.05rem}
+  .ab-name small{display:block;font-weight:600;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.04em}
+  .ab-track{position:relative;background:#f1e7dd;border-radius:7px;height:22px;overflow:hidden}
+  .ab-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--dourado),var(--vinho2));border-radius:7px;min-width:3px;transition:width .5s ease}
+  .ab-n{text-align:right;font-size:.8rem;color:var(--muted);font-weight:600;line-height:1.25}
+  .ab-ctr{text-align:right;font-weight:800;font-size:1.15rem;color:var(--ink);line-height:1.1}
+  .ab-ctr small{display:block;font-weight:600;color:var(--muted);font-size:.66rem;text-transform:uppercase;letter-spacing:.04em}
+  .ab-win{color:var(--ok)!important}
+  .ab-tag{display:inline-block;background:var(--ok);color:#fff;font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:999px;margin-left:7px;vertical-align:middle;text-transform:uppercase;letter-spacing:.04em}
+  @media(max-width:680px){.ab-row{grid-template-columns:1fr auto;gap:6px 12px}.ab-name{order:1}.ab-ctr{order:2}.ab-track{grid-column:1/-1;order:3}.ab-n{grid-column:1/-1;order:4;text-align:left}}
   .empty{color:var(--muted);font-size:.9rem;padding:20px 0;text-align:center}
   .gen{color:var(--muted);font-size:.78rem;text-align:center;margin-top:26px}
   .hidden{display:none!important}
@@ -144,6 +157,12 @@
     </div>
 
     <div class="cards" id="cards"></div>
+
+    <div class="panel">
+      <h2>A/B · Tela 1 (capa)</h2>
+      <p class="ph">Qual versão da capa faz mais gente clicar em começar. <b>CTR</b> = cliques no CTA ÷ quem viu a capa. A de maior CTR é a líder — espere volume suficiente (ideal: 100+ views por versão) antes de decidir.</p>
+      <div id="abBox"></div>
+    </div>
 
     <div class="panel">
       <h2>Retenção por tela</h2>
@@ -275,6 +294,37 @@ function renderCards(o){
   ).join('');
 }
 
+/* ---------- A/B TELA 1 ---------- */
+function renderAB(ab){
+  const box = $('#abBox');
+  const rows = (ab || []).map(r => ({
+    variant: r.variant, starts: +r.starts || 0, cta: +r.cta || 0,
+    ctr: (+r.starts > 0) ? (+r.cta / +r.starts * 100) : 0
+  })).filter(r => r.starts > 0);
+  if (!rows.length){
+    box.innerHTML = '<div class="empty">Sem dados de variação ainda. Assim que a capa instrumentada receber tráfego, as versões aparecem aqui.</div>';
+    return;
+  }
+  rows.sort((a,b) => b.ctr - a.ctr);
+  const maxCtr = Math.max(...rows.map(r => r.ctr), 0.0001);
+  const multi = rows.length > 1;
+  const leader = rows[0];
+  const smallSample = rows.some(r => r.starts < 100);
+  const niceName = v => v === '(sem)' ? 'Sem rótulo' : ('Versão ' + v);
+  box.innerHTML = rows.map(r => {
+    const win = multi && r === leader;
+    const w = Math.round(r.ctr / maxCtr * 100);
+    return `<div class="ab-row">
+      <div class="ab-name ${win?'ab-win':''}">${esc(niceName(r.variant))}${win?'<span class="ab-tag">líder</span>':''}<small>capa</small></div>
+      <div class="ab-track"><div class="ab-fill" style="width:${w}%"></div></div>
+      <div class="ab-n">${r.cta.toLocaleString('pt-BR')} cliques<br>de ${r.starts.toLocaleString('pt-BR')} views</div>
+      <div class="ab-ctr ${win?'ab-win':''}">${r.ctr.toFixed(1)}%<small>CTR</small></div>
+    </div>`;
+  }).join('') + (multi && smallSample
+    ? '<div class="ph" style="margin-top:13px">⚠ Amostra ainda pequena em pelo menos uma versão (ideal: 100+ views por versão antes de eleger a vencedora).</div>'
+    : (multi ? `<div class="ph" style="margin-top:13px">Líder: <b>${esc(niceName(leader.variant))}</b> com ${leader.ctr.toFixed(1)}% de CTR.</div>` : ''));
+}
+
 /* ---------- RETENÇÃO ---------- */
 function renderRetention(ret){
   const box = $('#retBox');
@@ -359,6 +409,7 @@ function renderAnswers(answers){
 
 function renderAll(d){
   renderCards(d.overview);
+  renderAB(d.ab);
   renderRetention(d.retention);
   renderProfiles(d.profiles);
   renderSource(d.by_source);

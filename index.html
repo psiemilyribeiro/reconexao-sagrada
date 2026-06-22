@@ -399,6 +399,82 @@ const CONFIG = {
   ],
 };
 
+/* ════════════════════════════════════════════════════════════════════
+   A/B — TELA 1 (CAPA)
+   Cada objeto é uma variação da capa. 'A' é o CONTROLE (capa atual).
+   ▸ Pra criar uma variação: copie um bloco, troque o id e o copy.
+   ▸ weight = peso no sorteio (deixe iguais p/ split parelho; 0 desativa).
+   ▸ lead = subtítulo opcional (deixe '' p/ ocultar).
+   ▸ QA: force uma versão na URL com ?capa=B
+   A métrica de cada versão (views × cliques no CTA × CTR) aparece no
+   dashboard, no painel "A/B · Tela 1".
+   ──────────────────────────────────────────────────────────────────── */
+const COVER_VARIANTS = [
+  {
+    id: 'A',
+    weight: 1,
+    h1: 'Será que ainda dá pra ser <span class="em-wine">desejada nesse casamento</span> de novo?',
+    lead: 'Faça a avaliação de 2 minutos e descubra o caminho de volta até a mulher que ele não consegue ignorar.',
+    cta: 'Comece por aqui',
+    showTrust: true,
+  },
+  {
+    id: 'B',
+    weight: 1,
+    h1: 'A mulher por quem <span class="em-wine">ele se apaixonou</span> ainda existe?',
+    lead: 'Faça a avaliação de 2 minutos, descubra como trazer sua melhor versão de volta e ele junto.',
+    cta: 'Comece por aqui',
+    showTrust: true,
+  },
+  {
+    id: 'C',
+    weight: 1,
+    h1: 'Você se perdeu tentando ser tudo pra todos. <span class="em-wine">E agora?</span>',
+    lead: 'Faça a avaliação de 2 minutos e descubra o caminho de volta até quem você era, aquela que ele não conseguia parar de olhar.',
+    cta: 'Comece por aqui',
+    showTrust: true,
+  },
+  {
+    id: 'D',
+    weight: 1,
+    h1: 'Você sabe o que realmente <span class="em-wine">esfriou o seu casamento</span>?',
+    lead: 'Não é briga, nem outra mulher. Faça a avaliação de 2 minutos, descubra o motivo real e o que fazer.',
+    cta: 'Comece por aqui',
+    showTrust: true,
+  },
+  {
+    id: 'E',
+    weight: 1,
+    h1: 'Será que ainda dá pra <span class="em-wine">salvar o seu casamento</span>?',
+    lead: 'Faça uma avaliação de 2 minutos e descubra o que fazer pra ter ele de volta.',
+    cta: 'Comece por aqui',
+    showTrust: true,
+  },
+  // Capa original (controle anterior), guardada caso queira reativar:
+  // { id:'orig', weight:0, h1:'Descubra o que está acabando com seu relacionamento e ganhe um plano pra resgatar o <span class="em-wine">amor entre vocês</span> antes que seja tarde.', lead:'', cta:'Comece por aqui', showTrust:true },
+];
+
+/* sorteia/persiste a variação por visitante */
+const COVER_AB = (function () {
+  const KEY = 'rs_capa_ab';
+  const ids = COVER_VARIANTS.map(v => v.id);
+  // 1) override por URL (?capa=B) — p/ QA
+  try {
+    const forced = new URLSearchParams(location.search).get('capa');
+    if (forced && ids.includes(forced)) { try { localStorage.setItem(KEY, forced); } catch (e) {} return forced; }
+  } catch (e) {}
+  // 2) bucket já sorteado antes
+  try { const saved = localStorage.getItem(KEY); if (saved && ids.includes(saved)) return saved; } catch (e) {}
+  // 3) sorteio ponderado
+  const pool = COVER_VARIANTS.filter(v => (v.weight || 0) > 0);
+  const total = pool.reduce((s, v) => s + (v.weight || 0), 0) || 1;
+  let r = Math.random() * total, pick = (pool[0] || COVER_VARIANTS[0]).id;
+  for (const v of pool) { r -= (v.weight || 0); if (r <= 0) { pick = v.id; break; } }
+  try { localStorage.setItem(KEY, pick); } catch (e) {}
+  return pick;
+})();
+function coverVariant() { return COVER_VARIANTS.find(v => v.id === COVER_AB) || COVER_VARIANTS[0]; }
+
 /* ── ESTADO ─────────────────────────────────────────────────────────── */
 const A = {};
 const SCORE = { inv:0, carrega:0, sil:0, acredita:0 };
@@ -847,8 +923,8 @@ const SB = {
   track: function (e, x) {
     x = x || {};
     switch (e) {
-      case 'quiz_start':          this._start(); this._ev('start'); break;
-      case 'quiz_cta_start':      this._ev('cta_start'); break;
+      case 'quiz_start':          this._start(); this._ev('start', null, null, x.cover ? { cover: x.cover } : null); break;
+      case 'quiz_cta_start':      this._ev('cta_start', null, null, x.cover ? { cover: x.cover } : null); break;
       case 'quiz_entry':          this._ev('answer', 'entry', x.entry); break;
       case 'quiz_answer':         this._ev('answer', x.q, x.a); break;
       case 'quiz_complete':       this._ev('complete', null, null, { profile: x.profile, hope: x.hope }); break;
@@ -901,18 +977,19 @@ function render() {
 
 /* ── TELA 1 — CAPA ── */
 function renderCover(step, el) {
-  pushDL('quiz_start');
+  const c = coverVariant();
+  pushDL('quiz_start', { cover: c.id });
   el.innerHTML = `
     <div class="landing">
-      <h1>Descubra o que está acabando com seu relacionamento e ganhe um plano pra resgatar o <span class="em-wine">amor entre vocês</span> antes que seja tarde.</h1>
-      <div class="btn-wrap"><button class="btn" id="startBtn">Comece por aqui <span class="arr">→</span></button></div>
-      <div class="trust">
+      <h1>${c.h1}</h1>
+      ${c.lead ? `<p class="lead">${c.lead}</p>` : ''}
+      <div class="btn-wrap"><button class="btn" id="startBtn">${c.cta} <span class="arr">→</span></button></div>
+      ${c.showTrust ? `<div class="trust">
         <span class="pill"><span class="stars">★★★★★</span> ${CONFIG.trustRating} · ${CONFIG.trustReviews}</span>
         <span class="pill">👩 ${CONFIG.trustCount}</span>
-      </div>
-      <p class="legal">Ao continuar, você concorda com os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>. Suas respostas são 100% confidenciais.</p>
+      </div>` : ''}
     </div>`;
-  el.querySelector('#startBtn').addEventListener('click', () => { pushDL('quiz_cta_start'); go(); });
+  el.querySelector('#startBtn').addEventListener('click', () => { pushDL('quiz_cta_start', { cover: c.id }); go(); });
 }
 
 /* ── TELA 2 — PERGUNTA DE ENTRADA (semeia o perfil) ── */
