@@ -295,34 +295,45 @@ function renderCards(o){
 }
 
 /* ---------- A/B TELA 1 ---------- */
+// Versões da capa atualmente em teste. Edite esta lista se trocar as variações no quiz.
+const AB_VARIANTS = ['A','B','C','D','E'];
+
 function renderAB(ab){
   const box = $('#abBox');
-  const rows = (ab || []).map(r => ({
-    variant: r.variant, starts: +r.starts || 0, cta: +r.cta || 0,
-    ctr: (+r.starts > 0) ? (+r.cta / +r.starts * 100) : 0
-  })).filter(r => r.starts > 0);
-  if (!rows.length){
-    box.innerHTML = '<div class="empty">Sem dados de variação ainda. Assim que a capa instrumentada receber tráfego, as versões aparecem aqui.</div>';
-    return;
+  const byId = {};
+  (ab || []).forEach(r => { byId[r.variant] = { starts:+r.starts||0, cta:+r.cta||0 }; });
+
+  // slate FIXO: todas as versões em teste sempre aparecem, mesmo com 0 view
+  const rows = AB_VARIANTS.map(id => {
+    const d = byId[id] || { starts:0, cta:0 };
+    return { id, label:'Versão '+id, test:true, starts:d.starts, cta:d.cta, ctr: d.starts>0 ? d.cta/d.starts*100 : 0 };
+  });
+  // linha da capa antiga (sessões pré-teste, sem rótulo) — só se tiver dado
+  const old = byId['(sem)'];
+  if (old && old.starts>0){
+    rows.push({ id:'(sem)', label:'Capa anterior (pré-teste)', test:false, starts:old.starts, cta:old.cta, ctr: old.cta/old.starts*100 });
   }
-  rows.sort((a,b) => b.ctr - a.ctr);
-  const maxCtr = Math.max(...rows.map(r => r.ctr), 0.0001);
-  const multi = rows.length > 1;
-  const leader = rows[0];
-  const smallSample = rows.some(r => r.starts < 100);
-  const niceName = v => v === '(sem)' ? 'Sem rótulo' : ('Versão ' + v);
+
+  // líder e escala consideram SÓ as versões em teste com pelo menos 1 view
+  const testRows = rows.filter(r => r.test && r.starts>0);
+  const leader = testRows.length ? testRows.reduce((a,b)=> b.ctr>a.ctr ? b : a) : null;
+  const maxCtr = Math.max(0.0001, ...testRows.map(r=>r.ctr));
+  const incompletas = testRows.length < AB_VARIANTS.length;
+  const smallSample = incompletas || testRows.some(r => r.starts < 100);
+
   box.innerHTML = rows.map(r => {
-    const win = multi && r === leader;
-    const w = Math.round(r.ctr / maxCtr * 100);
-    return `<div class="ab-row">
-      <div class="ab-name ${win?'ab-win':''}">${esc(niceName(r.variant))}${win?'<span class="ab-tag">líder</span>':''}<small>capa</small></div>
+    const win = leader && r === leader;
+    const w = r.starts>0 ? Math.min(100, Math.round(r.ctr / maxCtr * 100)) : 0;
+    const dim = r.starts===0 ? ' style="opacity:.5"' : '';
+    return `<div class="ab-row"${dim}>
+      <div class="ab-name ${win?'ab-win':''}">${esc(r.label)}${win?'<span class="ab-tag">líder</span>':''}<small>${r.test?'capa':'legado'}</small></div>
       <div class="ab-track"><div class="ab-fill" style="width:${w}%"></div></div>
       <div class="ab-n">${r.cta.toLocaleString('pt-BR')} cliques<br>de ${r.starts.toLocaleString('pt-BR')} views</div>
       <div class="ab-ctr ${win?'ab-win':''}">${r.ctr.toFixed(1)}%<small>CTR</small></div>
     </div>`;
-  }).join('') + (multi && smallSample
-    ? '<div class="ph" style="margin-top:13px">⚠ Amostra ainda pequena em pelo menos uma versão (ideal: 100+ views por versão antes de eleger a vencedora).</div>'
-    : (multi ? `<div class="ph" style="margin-top:13px">Líder: <b>${esc(niceName(leader.variant))}</b> com ${leader.ctr.toFixed(1)}% de CTR.</div>` : ''));
+  }).join('') + (leader
+    ? `<div class="ph" style="margin-top:13px">${smallSample?'⚠ Amostra ainda pequena — não decida ainda. ':''}Líder no momento: <b>${esc(leader.label)}</b> (${leader.ctr.toFixed(1)}% CTR). Ideal: 100+ views por versão antes de eleger a vencedora.</div>`
+    : '<div class="ph" style="margin-top:13px">Aguardando tráfego nas versões em teste.</div>');
 }
 
 /* ---------- RETENÇÃO ---------- */
