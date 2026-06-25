@@ -401,7 +401,7 @@ const CONFIG = {
 
 /* ════════════════════════════════════════════════════════════════════
    A/B — TELA 1 (CAPA)
-   Cada objeto é uma variação da capa. 'A' é o CONTROLE (capa atual).
+   Cada objeto é uma variação da capa. Ativas: C e D (split 50/50).
    ▸ Pra criar uma variação: copie um bloco, troque o id e o copy.
    ▸ weight = peso no sorteio (deixe iguais p/ split parelho; 0 desativa).
    ▸ lead = subtítulo opcional (deixe '' p/ ocultar).
@@ -410,22 +410,6 @@ const CONFIG = {
    dashboard, no painel "A/B · Tela 1".
    ──────────────────────────────────────────────────────────────────── */
 const COVER_VARIANTS = [
-  {
-    id: 'A',
-    weight: 1,
-    h1: 'Será que ainda dá pra ser <span class="em-wine">desejada nesse casamento</span> de novo?',
-    lead: 'Faça a avaliação de 2 minutos e descubra o caminho de volta até a mulher que ele não consegue ignorar.',
-    cta: 'Comece por aqui',
-    showTrust: true,
-  },
-  {
-    id: 'B',
-    weight: 1,
-    h1: 'A mulher por quem <span class="em-wine">ele se apaixonou</span> ainda existe?',
-    lead: 'Faça a avaliação de 2 minutos, descubra como trazer sua melhor versão de volta e ele junto.',
-    cta: 'Comece por aqui',
-    showTrust: true,
-  },
   {
     id: 'C',
     weight: 1,
@@ -442,14 +426,11 @@ const COVER_VARIANTS = [
     cta: 'Comece por aqui',
     showTrust: true,
   },
-  {
-    id: 'E',
-    weight: 1,
-    h1: 'Será que ainda dá pra <span class="em-wine">salvar o seu casamento</span>?',
-    lead: 'Faça uma avaliação de 2 minutos e descubra o que fazer pra ter ele de volta.',
-    cta: 'Comece por aqui',
-    showTrust: true,
-  },
+  // ── Versões desativadas (vencidas no teste — só C e D seguem ativas). ──
+  // Copy preservado caso queira reativar: mova o bloco pra cima e/ou ajuste o weight.
+  // { id:'A', weight:0, h1:'Será que ainda dá pra ser <span class="em-wine">desejada nesse casamento</span> de novo?', lead:'Faça a avaliação de 2 minutos e descubra o caminho de volta até a mulher que ele não consegue ignorar.', cta:'Comece por aqui', showTrust:true },
+  // { id:'B', weight:0, h1:'A mulher por quem <span class="em-wine">ele se apaixonou</span> ainda existe?', lead:'Faça a avaliação de 2 minutos, descubra como trazer sua melhor versão de volta e ele junto.', cta:'Comece por aqui', showTrust:true },
+  // { id:'E', weight:0, h1:'Será que ainda dá pra <span class="em-wine">salvar o seu casamento</span>?', lead:'Faça uma avaliação de 2 minutos e descubra o que fazer pra ter ele de volta.', cta:'Comece por aqui', showTrust:true },
   // Capa original (controle anterior), guardada caso queira reativar:
   // { id:'orig', weight:0, h1:'Descubra o que está acabando com seu relacionamento e ganhe um plano pra resgatar o <span class="em-wine">amor entre vocês</span> antes que seja tarde.', lead:'', cta:'Comece por aqui', showTrust:true },
 ];
